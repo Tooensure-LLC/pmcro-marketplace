@@ -1,0 +1,30 @@
+{
+  "trail": ".pmcro/trails/working/fb1ee433-3a4d-43cd-bb2e-2d5c1e270aec",
+  "disposition": "ACCEPT",
+  "verdict": "PASS",
+  "loops": 2,
+  "max_loops": 3,
+  "sealed_at": "2026-09-16T09:38:33-05:00",
+  "sealed_by": "orchestrator",
+  "artifacts": ["project-source-dump.txt"],
+  "acceptance": {
+    "AC1": "PASS",
+    "AC2": "PASS",
+    "AC3": "PASS",
+    "AC4": "PASS",
+    "AC5": "PASS",
+    "fidelity": "PASS"
+  },
+  "trail_files": [
+    "00-frame.jsonl",
+    "01-plan.jsonl",
+    "01-make.jsonl",
+    "01-check.jsonl",
+    "01-reflect.jsonl",
+    "02-make.jsonl",
+    "02-check.jsonl",
+    "02-reflect.jsonl"
+  ],
+  "portable": true,
+  "note": "Loop 1 LOOP (PowerShell 5.1 Get-Content corrupted UTF-8). Loop 2 PASS after UTF-8-safe IO. Dump: 18 source files, byte-faithful (FAIL=0), relative paths only, no BOM."
+}

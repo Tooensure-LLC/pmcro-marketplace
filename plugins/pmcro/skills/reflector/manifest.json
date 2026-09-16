@@ -1,0 +1,6 @@
+{
+  "name": "reflector",
+  "version": "1.0.0",
+  "plugin": "pmcro",
+  "description": "PMCR-O reflector"
+}

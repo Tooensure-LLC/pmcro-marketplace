@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectName.App.Pages.PmcrPage"
+             Title="PMCR-O">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+            <Label Text="PMCR-O" FontSize="32" FontAttributes="Bold" />
+            <Label Text="Turn messy seed intent into a governed, evidence-backed cycle." Opacity="0.7" />
+            <Border StrokeShape="RoundRectangle 16" Padding="16">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Seed intent" FontAttributes="Bold" />
+                    <Editor x:Name="IntentEditor" Placeholder="What do you want PMCR-O to accomplish?" AutoSize="TextChanges" MinimumHeightRequest="110" />
+                    <Button x:Name="RunButton" Text="Start PMCR-O Cycle" Clicked="RunCycle" />
+                </VerticalStackLayout>
+            </Border>
+            <ActivityIndicator x:Name="Busy" IsVisible="False" IsRunning="False" />
+            <Label x:Name="StatusLabel" FontSize="18" FontAttributes="Bold" />
+            <Label x:Name="CycleLabel" Opacity="0.7" />
+            <CollectionView x:Name="Frames" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,4" Padding="12" StrokeShape="RoundRectangle 12">
+                            <VerticalStackLayout Spacing="4">
+                                <HorizontalStackLayout Spacing="10">
+                                    <Label Text="{Binding Role}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Verdict}" FontAttributes="Bold" />
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding Evidence}" FontSize="13" Opacity="0.75" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

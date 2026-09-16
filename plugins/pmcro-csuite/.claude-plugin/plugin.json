@@ -1,0 +1,17 @@
+{
+  "name": "pmcro-csuite",
+  "version": "1.0.0",
+  "description": "pmcro-csuite \u2014 PMCR-O colony plugin",
+  "skills": [
+    "./skills/ceo",
+    "./skills/chief-of-staff",
+    "./skills/cto",
+    "./skills/coo",
+    "./skills/cfo",
+    "./skills/cro",
+    "./skills/cmo",
+    "./skills/clo",
+    "./skills/chro",
+    "./skills/domain-specialist"
+  ]
+}

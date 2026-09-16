@@ -1,0 +1,13 @@
+{
+  "name": "pmcro-code",
+  "version": "1.0.0",
+  "description": "pmcro-code \u2014 PMCR-O colony plugin",
+  "skills": [
+    "./skills/git",
+    "./skills/filesystem",
+    "./skills/catalog-check",
+    "./skills/plugin-packager",
+    "./skills/skill-creator",
+    "./skills/meta-runtime"
+  ]
+}

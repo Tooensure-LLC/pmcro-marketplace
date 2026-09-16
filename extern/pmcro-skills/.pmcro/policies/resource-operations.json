@@ -1,0 +1,104 @@
+{
+  "apiVersion": "pmcro.ai/v1",
+  "kind": "ResourceOperationPolicy",
+  "description": "Which CRUD operations each control-plane resource permits. This is the single machine-readable source both runtimes read: the Python control plane in pmcro-skills and the .NET runtime in pmcro-runtime. It is JSON rather than YAML so both parse it with no third-party dependency; the narrative policy files alongside it stay YAML.",
+  "decisions": {
+    "allow": "The operation proceeds under normal policy.",
+    "approval": "The operation is legitimate but needs a human to authorize it before it runs.",
+    "deny": "The operation is never valid for this resource. The reason names the law or lifecycle rule that forbids it."
+  },
+  "defaults": {
+    "unknownResource": "deny",
+    "unknownOperation": "deny"
+  },
+  "resources": {
+    "laws": {
+      "path": ".pmcro/laws",
+      "summary": "Constitutional rules. Read freely; changing them is a governance act.",
+      "create": {"decision": "approval", "reason": "A new law is a governance change and requires explicit review."},
+      "read": {"decision": "allow"},
+      "update": {"decision": "approval", "reason": "Laws are versioned and changes require explicit review."},
+      "delete": {"decision": "deny", "reason": "A law is superseded by a reviewed revision, never deleted."}
+    },
+    "constraints": {
+      "path": ".pmcro/trails/constraints/earned-constraints.json",
+      "summary": "Earned constraints with their own promotion lifecycle.",
+      "create": {"decision": "allow", "reason": "A Reflector may record a candidate constraint."},
+      "read": {"decision": "allow"},
+      "update": {"decision": "approval", "reason": "Promotion, suspension, and retirement are reviewed transitions (laws/constraint-promotion.md)."},
+      "delete": {"decision": "deny", "reason": "Retire or supersede a constraint; deleting it erases why it exists."}
+    },
+    "frames": {
+      "path": ".pmcro/trails/frames",
+      "summary": "TrailFrames: the evidence record of what each phase did.",
+      "create": {"decision": "allow"},
+      "read": {"decision": "allow"},
+      "update": {"decision": "deny", "reason": "LAW-010: frames are append-only. A correction is a new frame referencing the prior one."},
+      "delete": {"decision": "deny", "reason": "LAW-010: deleting a frame destroys the evidence the trail exists to hold."}
+    },
+    "events": {
+      "path": ".pmcro/trails/events.jsonl",
+      "summary": "The append-only trail event log.",
+      "create": {"decision": "allow"},
+      "read": {"decision": "allow"},
+      "update": {"decision": "deny", "reason": "LAW-010: events are append-only."},
+      "delete": {"decision": "deny", "reason": "LAW-010: events are append-only."}
+    },
+    "checkpoints": {
+      "path": ".pmcro/checkpoints",
+      "summary": "Resumable cycle state. Unlike frames, a checkpoint is current state, not history.",
+      "create": {"decision": "allow"},
+      "read": {"decision": "allow"},
+      "update": {"decision": "allow", "reason": "A checkpoint tracks where a cycle is now; advancing it is its purpose."},
+      "delete": {"decision": "deny", "reason": "A superseded checkpoint still shows how a cycle was resumed."}
+    },
+    "evidence": {
+      "path": ".pmcro/evidence",
+      "summary": "Execution records, check results, artifacts, and provenance.",
+      "create": {"decision": "allow"},
+      "read": {"decision": "allow"},
+      "update": {"decision": "deny", "reason": "LAW-002: evidence that can be revised is not evidence."},
+      "delete": {"decision": "deny", "reason": "LAW-002: a completion claim rests on evidence that outlives the claim."}
+    },
+    "schemas": {
+      "path": ".pmcro/schemas",
+      "summary": "Typed contracts for every envelope.",
+      "create": {"decision": "approval", "reason": "A new contract changes what the system accepts."},
+      "read": {"decision": "allow"},
+      "update": {"decision": "approval", "reason": "Loosening a contract in place is how untyped state re-enters (ARCH-013)."},
+      "delete": {"decision": "deny", "reason": "Instances already reference this contract."}
+    },
+    "queue": {
+      "path": ".pmcro/queue",
+      "summary": "Durable PhaseMessage jobs: per-machine runtime state, not evidence.",
+      "create": {"decision": "allow"},
+      "read": {"decision": "allow"},
+      "update": {"decision": "allow", "reason": "Leases, attempts, and state transitions are how the queue works."},
+      "delete": {"decision": "approval", "reason": "Dropping a queued job silently loses a message a sender believes was accepted."}
+    },
+    "state": {
+      "path": ".pmcro/state",
+      "summary": "Execution truth: cycles and current position.",
+      "create": {"decision": "allow"},
+      "read": {"decision": "allow"},
+      "update": {"decision": "allow"},
+      "delete": {"decision": "approval", "reason": "State is recoverable but its loss breaks resumption."}
+    },
+    "workspace": {
+      "path": "workspace",
+      "summary": "Where generated output lands: scaffolded projects, harnesses, scratch solutions. Disposable, and outside both the control plane and the product.",
+      "create": {"decision": "allow"},
+      "read": {"decision": "allow"},
+      "update": {"decision": "allow"},
+      "delete": {"decision": "approval", "reason": "Output is cheap to recreate, but a delete that takes a directory with it is not a decision a run makes alone."}
+    },
+    "memory": {
+      "path": ".pmcro/memory",
+      "summary": "Durable shared knowledge, distinct from execution state.",
+      "create": {"decision": "allow"},
+      "read": {"decision": "allow"},
+      "update": {"decision": "allow"},
+      "delete": {"decision": "approval", "reason": "Forgetting is deliberate, not incidental."}
+    }
+  }
+}

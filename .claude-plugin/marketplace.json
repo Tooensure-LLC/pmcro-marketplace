@@ -1,0 +1,27 @@
+{
+  "name": "pmcro-marketplace",
+  "owner": "Tooensure-LLC",
+  "description": "PMCR-O colony marketplace \u2014 Prod MAF + Aspire + Ollama + Generic UoW",
+  "plugins": [
+    {
+      "name": "pmcro",
+      "source": "./plugins/pmcro",
+      "strict": false
+    },
+    {
+      "name": "pmcro-loop",
+      "source": "./plugins/pmcro-loop",
+      "strict": false
+    },
+    {
+      "name": "pmcro-csuite",
+      "source": "./plugins/pmcro-csuite",
+      "strict": false
+    },
+    {
+      "name": "pmcro-code",
+      "source": "./plugins/pmcro-code",
+      "strict": false
+    }
+  ]
+}

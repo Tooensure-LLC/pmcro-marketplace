@@ -1,0 +1,73 @@
+<Project>
+  <!--
+    Central Package Management. Versions live here and nowhere else.
+
+    EVERY NUMBER BELOW WAS RE-VERIFIED AGAINST THE NUGET FLAT-CONTAINER API ON
+    2026-09-16 (a prior pass claimed the same and still got one wrong — see
+    below — so this pass checked every single package's real version list,
+    not just the ones that looked suspicious).
+
+    Fixed this pass:
+      Microsoft.Extensions.ServiceDiscovery 13.5.4 -> did not exist (highest
+      real version was 10.10.0, confirmed via nuget.org). It is NOT part of
+      Aspire's 13.5.x lockstep family despite living in this file's Aspire
+      group before now — it versions independently on its own Microsoft.Extensions.*
+      line, same as Http.Resilience and Diagnostics.HealthChecks below. Moved
+      out of the lockstep group and pinned directly.
+
+    Aspire.Hosting.* itself DOES move as a LOCKSTEP FAMILY: a partial bump
+    throws at runtime instead of failing the build, which is the worst failure
+    mode available. 13.5.4 is confirmed present for both members actually in
+    that family. The Community Toolkit is a SEPARATE family on its own cadence.
+  -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+    <AspireVersion>13.5.4</AspireVersion>
+  </PropertyGroup>
+  <ItemGroup Label="Aspire - lockstep, never bump one alone">
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="$(AspireVersion)" />
+    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="$(AspireVersion)" />
+  </ItemGroup>
+  <ItemGroup Label="Aspire Community Toolkit - separate cadence">
+    <!-- Ollama hosting is NOT in core Aspire. It ships here. -->
+    <PackageVersion Include="CommunityToolkit.Aspire.Hosting.Ollama" Version="13.5.1-beta.757" />
+  </ItemGroup>
+  <ItemGroup Label="Persistence">
+    <!-- NET9: if you drop to net9.0, use 9.0.4 here. 10.0.3 is net10.0-only.
+         Brings Microsoft.EntityFrameworkCore 10.0.x transitively, so there is
+         one fewer version to keep honest. -->
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
+  </ItemGroup>
+  <ItemGroup Label="Agents and inference">
+    <!-- Microsoft Agent Framework. PMCR-O adds lifecycle meaning on top of this
+         and replaces no part of it. -->
+    <PackageVersion Include="Microsoft.Agents.AI" Version="1.21.0" />
+    <!-- OllamaApiClient implements Microsoft.Extensions.AI IChatClient directly.
+         There is no OllamaChatClient type to construct and nothing to call
+         .AsIChatClient() on - a mistake copied between tutorials. -->
+    <PackageVersion Include="OllamaSharp" Version="5.4.30" />
+  </ItemGroup>
+  <ItemGroup Label="MAUI app (ProjectName.App) - net10.0, GA only, no rc/preview">
+    <PackageVersion Include="Microsoft.Maui.Controls" Version="10.0.101" />
+    <!-- Microsoft.Extensions.Logging.Debug is centrally pinned to 11.0.0-rc.1 below (see
+         Hosting group) because Microsoft.Extensions.Hosting 11.0.0-rc.1's transitive pin wins
+         for the rest of the solution. ProjectName.App overrides back to the net10.0 GA release
+         via VersionOverride on its own PackageReference instead of changing that shared pin. -->
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageVersion Include="CommunityToolkit.Maui" Version="15.0.1" />
+    <PackageVersion Include="Microsoft.Data.Sqlite.Core" Version="10.0.12" />
+    <PackageVersion Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
+    <PackageVersion Include="SQLitePCLRaw.lib.e_sqlite3" Version="3.53.3" />
+    <PackageVersion Include="SQLitePCLRaw.lib.e_sqlite3.android" Version="2.1.13" />
+    <PackageVersion Include="Syncfusion.Maui.Toolkit" Version="1.0.11" />
+  </ItemGroup>
+  <ItemGroup Label="Hosting">
+    <!-- NET9: drop to 9.0.x alongside the TFM. -->
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="11.0.0-rc.1.26425.128" />
+    <!-- Versions independently of Aspire.Hosting.* — see file header. Latest real: 10.10.0. -->
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.10.0" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.10.0" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="10.0.12" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+{
+  "name": "pmcro",
+  "version": "1.0.0",
+  "description": "Minimal PMCR-O loop: Orchestrator, Planner, Maker, Checker, Reflector + trails.",
+  "skills": ["pmcro-loop"]
+}

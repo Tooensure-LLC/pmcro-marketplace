@@ -1,0 +1,26 @@
+{
+  "trail": ".pmcro/trails/working/7120cdaa-0118-461f-9f98-898a0d893d58",
+  "disposition": "ACCEPT",
+  "verdict": "PASS",
+  "loops": 1,
+  "max_loops": 3,
+  "sealed_at": "2026-09-16T10:24:10-05:00",
+  "sealed_by": "orchestrator",
+  "artifacts": ["settings.json"],
+  "acceptance": {
+    "AC1": "PASS",
+    "AC2": "PASS",
+    "AC3": "PASS",
+    "AC4": "PASS"
+  },
+  "trail_files": [
+    "00-frame.jsonl",
+    "01-plan.jsonl",
+    "01-make.jsonl",
+    "01-check.jsonl",
+    "01-reflect.jsonl"
+  ],
+  "portable": true,
+  "open_followup": "Hook target ./plugins/pmcro/scripts/validate-trail.py does not exist; create it if the hook is to be enabled.",
+  "note": "settings.json created at repo root with PreToolUse hook (matcher Edit|Write -> python3 ./plugins/pmcro/scripts/validate-trail.py). Valid JSON; Checker PASS on loop 1."
+}

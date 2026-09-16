@@ -1,0 +1,13 @@
+{
+  "name": "pmcro",
+  "version": "1.0.0",
+  "description": "pmcro \u2014 PMCR-O colony plugin",
+  "skills": [
+    "./skills/orchestrator",
+    "./skills/planner",
+    "./skills/maker",
+    "./skills/checker",
+    "./skills/reflector",
+    "./skills/dependency-resolver"
+  ]
+}

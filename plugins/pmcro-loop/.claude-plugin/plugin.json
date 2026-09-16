@@ -1,0 +1,8 @@
+{
+  "name": "pmcro-loop",
+  "version": "1.0.0",
+  "description": "pmcro-loop \u2014 PMCR-O colony plugin",
+  "skills": [
+    "./skills/pmcro-loop"
+  ]
+}

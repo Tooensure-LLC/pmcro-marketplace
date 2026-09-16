@@ -1,0 +1,13 @@
+{
+  "name": "pmcro",
+  "owner": {
+    "name": "Tooensure"
+  },
+  "plugins": [
+    {
+      "name": "pmcro",
+      "source": "./plugins/pmcro",
+      "description": "Minimal PMCR-O loop with trails and five laws."
+    }
+  ]
+}

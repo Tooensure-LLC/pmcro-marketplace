@@ -1,0 +1,6 @@
+{
+  "name": "plugin-packager",
+  "version": "1.0.0",
+  "plugin": "pmcro-code",
+  "description": "PMCR-O plugin-packager"
+}

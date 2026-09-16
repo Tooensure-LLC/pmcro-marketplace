@@ -1,0 +1,37 @@
+[agents.orchestrator]
+prompt = "plugins/pmcro/skills/orchestrator/SKILL.md"
+model = "ollama/llama4:maverick"
+mode = "primary"
+
+[agents.planner]
+prompt = "plugins/pmcro/skills/planner/SKILL.md"
+model = "ollama/llama4:maverick"
+
+[agents.maker]
+prompt = "plugins/pmcro/skills/maker/SKILL.md"
+model = "ollama/llama4:maverick"
+
+[agents.checker]
+prompt = "plugins/pmcro/skills/checker/SKILL.md"
+model = "ollama/llama4:maverick"
+
+[agents.reflector]
+prompt = "plugins/pmcro/skills/reflector/SKILL.md"
+model = "ollama/llama4:maverick"
+
+[agents.meta-llama]
+prompt = "src/PMCR.OllamaRuntime/SKILL.md"
+model = "ollama/llama4:maverick"
+
+[mcp.github]
+type = "local"
+command = ["npx", "@modelcontextprotocol/server-github"]
+
+[mcp.postgres]
+type = "local"
+command = ["npx", "@modelcontextprotocol/server-postgres"]
+env = { POSTGRES_CONNECTION_STRING = "${ConnectionStrings__pmcro-db}" }
+
+[mcp.filesystem]
+type = "local"
+command = ["npx", "@modelcontextprotocol/server-filesystem", "/data"]

@@ -1,0 +1,26 @@
+{
+  "trail": ".pmcro/trails/5a957afe-d7f7-49dc-b4ed-66adccf39a3c",
+  "disposition": "ACCEPT",
+  "verdict": "PASS",
+  "loops": 1,
+  "max_loops": 3,
+  "sealed_at": "2026-09-16T09:28:40-05:00",
+  "sealed_by": "orchestrator",
+  "artifacts": ["AGENTS.md"],
+  "acceptance": {
+    "AC1": "PASS",
+    "AC2": "PASS",
+    "AC3": "PASS",
+    "AC4": "PASS",
+    "AC5": "PASS"
+  },
+  "trail_files": [
+    "00-frame.jsonl",
+    "01-plan.jsonl",
+    "01-make.jsonl",
+    "01-check.jsonl",
+    "01-reflect.jsonl"
+  ],
+  "portable": true,
+  "note": "One cycle. Checker PASS on loop 1. Root AGENTS.md added; full lean tree now matches spec."
+}

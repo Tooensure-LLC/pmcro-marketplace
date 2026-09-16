@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <!-- BLOCKER FIXED: this referenced Microsoft.Agents.AI 9.0.0-preview, which
+       does not exist. The real line is 1.x - 1.21.0 as of 2026-09-11. Restore
+       would have failed before a single file compiled. -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Agents.AI" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\PMCR.Core\PMCR.Core.csproj" />
+    <ProjectReference Include="..\PMCR.OllamaRuntime\PMCR.OllamaRuntime.csproj" />
+    <ProjectReference Include="..\PMCR.Agents\Planner\Planner.csproj" />
+    <ProjectReference Include="..\PMCR.Agents\Maker\Maker.csproj" />
+    <ProjectReference Include="..\PMCR.Agents\Checker\Checker.csproj" />
+    <ProjectReference Include="..\PMCR.Agents\Reflector\Reflector.csproj" />
+    <ProjectReference Include="..\..\ServiceDefaults\ServiceDefaults.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Skills ride with the service. A MAF host reads SKILL.md as agent
+         instructions, so the marketplace tree must be on disk beside the exe. -->
+    <Content Include="..\..\plugins\**\skills\**\*" LinkBase="Skills"
+             CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- BLOCKER FIXED: Data/AppDbContext.cs and Persistence/* use EF Core and
+       Npgsql, and this project referenced neither those packages nor Domain or
+       Application. It could not compile.
+       Versions come from Directory.Packages.props - never restate one here. -->
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+  </ItemGroup>
+</Project>

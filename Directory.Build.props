@@ -1,0 +1,18 @@
+<Project>
+  <!-- One place for what every project shares. Individual .csproj files carry
+       only what makes them different. -->
+  <PropertyGroup>
+    <!-- net10.0 because the current package families target it: Npgsql EF Core
+         10.0.3 is net10.0-only, and VS 18 ships the .NET 10 SDK. If
+         the installed SDK list shows no 10.x, change this ONE line to net9.0 and
+         switch the two lines marked NET9 in Directory.Packages.props. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Deliberately false until the first green build is recorded. Turning it
+         on before anyone has seen the warning list just paints the solution red
+         on open. -->
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,26 @@
+<Solution>
+  <!-- .slnx, not .sln. Your VS cache says v18, which reads slnx natively, and
+       slnx needs no project GUIDs - so this file is hand-maintainable and merges
+       cleanly. `dotnet sln pmcro.slnx add <proj>` works the same. -->
+  <Folder Name="/src/">
+    <Project Path="src/Application/Application.csproj" />
+    <Project Path="src/Domain/Domain.csproj" />
+    <Project Path="src/Infrastructure/Infrastructure.csproj" />
+    <Project Path="src/PMCR.Core/PMCR.Core.csproj" />
+    <Project Path="src/PMCR.OllamaRuntime/PMCR.OllamaRuntime.csproj" />
+    <Project Path="src/PMCR.OrchestratorService/PMCR.OrchestratorService.csproj" />
+  </Folder>
+  <Folder Name="/src/Agents/">
+    <Project Path="src/PMCR.Agents/Checker/Checker.csproj" />
+    <Project Path="src/PMCR.Agents/Maker/Maker.csproj" />
+    <Project Path="src/PMCR.Agents/Planner/Planner.csproj" />
+    <Project Path="src/PMCR.Agents/Reflector/Reflector.csproj" />
+  </Folder>
+  <Folder Name="/app/">
+    <Project Path="ProjectName.App/ProjectName.App.csproj" />
+  </Folder>
+  <Folder Name="/host/">
+    <Project Path="AppHost/AppHost.csproj" />
+    <Project Path="ServiceDefaults/ServiceDefaults.csproj" />
+  </Folder>
+</Solution>

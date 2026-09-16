@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- NEW: this folder had .cs files and SKILL.md but no project, so nothing in
+       it was ever compiled or referenced. -->
+  <ItemGroup>
+    <PackageReference Include="OllamaSharp" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SKILL.md" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- BLOCKER FIXED: this project had no reference to Domain, while
+       Interfaces/IGenericRepository.cs uses Domain.Common.BaseEntity. It could
+       not compile. -->
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+</Project>

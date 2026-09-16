@@ -1,0 +1,6 @@
+{
+  "name": "dependency-resolver",
+  "version": "1.0.0",
+  "plugin": "pmcro",
+  "description": "PMCR-O dependency-resolver"
+}

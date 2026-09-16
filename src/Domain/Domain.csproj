@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- ZERO package references, on purpose. The domain holds lifecycle meaning
+       and the append-only rule; nothing here knows about EF Core, Aspire, MAF or
+       Ollama, so no persistence concern can quietly reshape it. -->
+</Project>

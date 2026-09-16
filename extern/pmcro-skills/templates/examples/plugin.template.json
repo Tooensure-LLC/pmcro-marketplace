@@ -1,0 +1,21 @@
+{
+  "template": "plugin",
+  "name": "example-plugin",
+  "version": "1.0.0",
+  "description": "Scaffolds a new plugin.json bundling one or more already-generated skills.",
+  "vars": {
+    "plugin_name": { "type": "string", "required": true },
+    "plugin_description": { "type": "string", "required": true },
+    "skill_names": { "type": "string", "required": true, "default": "[\"pmcro-loop\"]" }
+  },
+  "declares": {
+    "files": [
+      {
+        "path": "plugins/{{plugin_name}}/plugin.json",
+        "body_ref": "plugin_json"
+      }
+    ]
+  },
+  "requires_trail": true,
+  "laws": ["EC-SYS-003", "EC-VERIFY-FIRST-001", "EC-004", "EC-PORTABLE-005"]
+}
