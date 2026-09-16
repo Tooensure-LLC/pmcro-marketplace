@@ -35,6 +35,16 @@ public class OrchestratorAgent
         var trail = new Domain.Entities.Trail { Intent = intent, SourceType = mode.ToString() };
         await _uow.Repository<Domain.Entities.Trail>().AddAsync(trail, ct);
         await _uow.SaveChangesAsync(ct);
+        var openEvidence = $"Cycle opened from intent using {mode} mode; trail frame established before phase mutation.";
+        PMCR.Core.Laws.EC_VERIFY_FIRST_001.Enforce(openEvidence);
+        var openEnvelope = $"{{\"phase\":\"orchestrator\",\"status\":\"open\",\"mode\":\"{mode}\"}}";
+        PMCR.Core.Laws.PLAN_001.Enforce(openEnvelope);
+        await _uow.Repository<Domain.Entities.Frame>().AddAsync(new Domain.Entities.Frame
+        {
+            TrailId = trail.Id, Role = "orchestrator", Verdict = string.Empty,
+            TypedEnvelopeJson = openEnvelope, Evidence = openEvidence
+        }, ct);
+        await _uow.SaveChangesAsync(ct);
         await _planner.RunAsync(trail.Id, ct);
         await _maker.RunAsync(trail.Id, ct);
         await _checker.RunAsync(trail.Id, ct);
