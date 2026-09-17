@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+# Replace with the repository's real development command.
+npm run dev

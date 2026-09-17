@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "ProjectName.ReflectorGrpc";
+
+package pmcro.v1;
+
+service Reflector {
+  rpc RunCycle (Request) returns (Response);
+}
+
+message Request {
+  string intent = 1;
+  string checker_verdict = 2;
+  string checker_evidence = 3;
+}
+
+message Response {
+  string disposition = 1;
+  string reflection = 2;
+}

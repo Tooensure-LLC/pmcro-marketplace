@@ -1,4 +1,3 @@
-global using Fonts;
 global using ProjectName.App.Data;
 global using ProjectName.App.PageModels;
 global using ProjectName.App.Pages;

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Android system chrome. These must track PmcroTokens.xaml by hand - Android reads
+    this file before any MAUI resource dictionary is loaded, so the splash and status
+    bar would otherwise flash MAUI purple before the PMCR-O surface appears.
+
+    colorPrimaryDark = PmcroBg   (#0B0D12)
+    colorPrimary     = PmcroSurface (#0F1116)
+    colorAccent      = PmcroPrimary  (#7C6CF6)
+-->
 <resources>
-    <color name="colorPrimary">#512BD4</color>
-    <color name="colorPrimaryDark">#2B0B98</color>
-    <color name="colorAccent">#2B0B98</color>
+    <color name="colorPrimary">#0F1116</color>
+    <color name="colorPrimaryDark">#0B0D12</color>
+    <color name="colorAccent">#7C6CF6</color>
+    <color name="pmcro_bg">#0B0D12</color>
+    <color name="pmcro_surface">#0F1116</color>
 </resources>

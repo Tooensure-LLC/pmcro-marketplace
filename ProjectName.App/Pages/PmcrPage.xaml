@@ -2,36 +2,47 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectName.App.Pages.PmcrPage"
+             Style="{StaticResource PmcroDetailPage}"
              Title="PMCR-O">
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="18">
-            <Label Text="PMCR-O" FontSize="32" FontAttributes="Bold" />
-            <Label Text="Turn messy seed intent into a governed, evidence-backed cycle." Opacity="0.7" />
-            <Border StrokeShape="RoundRectangle 16" Padding="16">
+        <VerticalStackLayout Padding="20,20,20,32" Spacing="16">
+
+            <Label Text="Run a loop" Style="{StaticResource PmcroDisplay}" />
+            <Label Text="Turn messy seed intent into a governed, evidence-backed cycle."
+                   Style="{StaticResource PmcroBody}" />
+
+            <Border Style="{StaticResource PmcroCard}">
                 <VerticalStackLayout Spacing="12">
-                    <Label Text="Seed intent" FontAttributes="Bold" />
-                    <Editor x:Name="IntentEditor" Placeholder="What do you want PMCR-O to accomplish?" AutoSize="TextChanges" MinimumHeightRequest="110" />
-                    <Button x:Name="RunButton" Text="Start PMCR-O Cycle" Clicked="RunCycle" />
+                    <Label Text="Seed intent" Style="{StaticResource PmcroFieldLabel}" />
+
+                    <Border Style="{StaticResource PmcroField}"
+                            BackgroundColor="{StaticResource PmcroSurface}">
+                        <Editor x:Name="IntentEditor"
+                                Placeholder="What do you want PMCR-O to accomplish?"
+                                AutoSize="TextChanges"
+                                MinimumHeightRequest="110"
+                                BackgroundColor="Transparent"
+                                TextColor="{StaticResource PmcroTextPrimary}"
+                                PlaceholderColor="{StaticResource PmcroTextMuted}" />
+                    </Border>
+
+                    <Button x:Name="RunButton" Text="Start PMCR-O cycle"
+                            Style="{StaticResource PmcroButtonPrimary}"
+                            Clicked="RunCycle" />
+
+                    <Label Text="Opens a trail before writing - Log Before Act"
+                           Style="{StaticResource PmcroCaption}"
+                           HorizontalTextAlignment="Center" />
                 </VerticalStackLayout>
             </Border>
-            <ActivityIndicator x:Name="Busy" IsVisible="False" IsRunning="False" />
-            <Label x:Name="StatusLabel" FontSize="18" FontAttributes="Bold" />
-            <Label x:Name="CycleLabel" Opacity="0.7" />
-            <CollectionView x:Name="Frames" SelectionMode="None">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Margin="0,4" Padding="12" StrokeShape="RoundRectangle 12">
-                            <VerticalStackLayout Spacing="4">
-                                <HorizontalStackLayout Spacing="10">
-                                    <Label Text="{Binding Role}" FontAttributes="Bold" />
-                                    <Label Text="{Binding Verdict}" FontAttributes="Bold" />
-                                </HorizontalStackLayout>
-                                <Label Text="{Binding Evidence}" FontSize="13" Opacity="0.75" />
-                            </VerticalStackLayout>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+
+            <ActivityIndicator x:Name="Busy" IsVisible="False" IsRunning="False"
+                               Color="{StaticResource PmcroAccent}" />
+
+            <Label x:Name="StatusLabel" Style="{StaticResource PmcroBodyStrong}" />
+
+            <Label Text="The cycle runs on the orchestrator. Watch it on the Trails tab - this screen only seeds it."
+                   Style="{StaticResource PmcroCaption}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

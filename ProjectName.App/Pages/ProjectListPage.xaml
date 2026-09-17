@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:f="clr-namespace:ProjectName.App.Resources.Fonts"
              xmlns:pageModels="clr-namespace:ProjectName.App.PageModels"
              xmlns:models="clr-namespace:ProjectName.App.Models"
              xmlns:controls="clr-namespace:ProjectName.App.Pages.Controls"
@@ -8,44 +9,71 @@
              x:Class="ProjectName.App.Pages.ProjectListPage"
              x:Name="ProjectList"
              x:DataType="pageModels:ProjectListPageModel"
-             Title="Projects">
-
+             Style="{StaticResource PmcroPage}"
+             Title="Discover">
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
                 x:Name="AppearingBehavior"
                 BindingContext="{Binding Path=BindingContext, Source={x:Reference ProjectList}, x:DataType=ContentPage}"
-                EventName="Appearing"                
+                EventName="Appearing"
                 Command="{Binding AppearingCommand}" />
     </ContentPage.Behaviors>
-    <Grid>
-        <CollectionView ItemsSource="{Binding Projects}"
-            Margin="{StaticResource LayoutPadding}"
-            x:Name="ProjectsCollectionView"
-            SelectionMode="Single"
-            SelectedItem="{Binding SelectedProject}"
-            SelectionChangedCommand="{Binding NavigateToProjectCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectListPageModel}}, x:DataType=pageModels:ProjectListPageModel}"
-            SelectionChangedCommandParameter="{Binding SelectedProject}">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="7.5"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Project">
-                    <Border 
-                        Background="{AppThemeBinding Light={StaticResource LightSecondaryBackground},Dark={StaticResource DarkSecondaryBackground}}"
-                        SemanticProperties.Description="{Binding Name, StringFormat='{0}'}">
-                        <VerticalStackLayout Padding="10">
-                            <Label Text="{Binding Name}" FontSize="24" />
-                            <Label Text="{Binding Description}" />
-                        </VerticalStackLayout>
-                    </Border>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
 
-        <controls:AddButton
-        Command="{Binding AddProjectCommand}"
-        SemanticProperties.Description="Add project" 
-        ToolTipProperties.Text="Add project" />
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- ===== MASTHEAD ===== -->
+        <VerticalStackLayout Grid.Row="0" Padding="20,20,20,12" Spacing="4">
+            <Label Text="Discover" Style="{StaticResource PmcroDisplay}" />
+            <Label Text="Projects and colonies in your workspace"
+                   Style="{StaticResource PmcroBody}" />
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1">
+            <CollectionView ItemsSource="{Binding Projects}"
+                Margin="20,0,20,0"
+                x:Name="ProjectsCollectionView"
+                SelectionMode="Single"
+                SelectedItem="{Binding SelectedProject}"
+                SelectionChangedCommand="{Binding NavigateToProjectCommand, Source={RelativeSource AncestorType={x:Type pageModels:ProjectListPageModel}}, x:DataType=pageModels:ProjectListPageModel}"
+                SelectionChangedCommandParameter="{Binding SelectedProject}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.Footer>
+                    <!-- Clears the FAB and the tab bar so the last card stays tappable. -->
+                    <BoxView HeightRequest="96" Color="Transparent" />
+                </CollectionView.Footer>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Project">
+                        <Border Style="{StaticResource PmcroCard}"
+                                SemanticProperties.Description="{Binding Name, StringFormat='{0}'}">
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                    <Label Text="{Binding Name}"
+                                           Style="{StaticResource PmcroSectionHeading}" />
+                                    <Label Text="{Binding Description}"
+                                           Style="{StaticResource PmcroBody}" />
+                                </VerticalStackLayout>
+
+                                <Label Grid.Column="1"
+                                       Text="{x:Static f:FluentUI.chevron_right_24_regular}"
+                                       FontFamily="{x:Static f:FluentUI.FontFamily}"
+                                       TextColor="{StaticResource PmcroTextMuted}"
+                                       FontSize="18" VerticalOptions="Center" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <controls:AddButton
+                Command="{Binding AddProjectCommand}"
+                BackgroundColor="{StaticResource PmcroPrimary}"
+                CornerRadius="16"
+                Margin="20"
+                SemanticProperties.Description="Add project"
+                ToolTipProperties.Text="Add project" />
+        </Grid>
     </Grid>
 </ContentPage>

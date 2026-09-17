@@ -1,0 +1,81 @@
+{
+  "name": "pmcro-marketplace",
+  "owner": "Tooensure-LLC",
+  "featured": [
+    {
+      "id": "github-bridge",
+      "name": "GitHub Bridge",
+      "summary": "Sync trails to Actions & pull requests.",
+      "kind": "Plugin",
+      "glyph": "G",
+      "accent": "#1F6FEB",
+      "installed": false
+    },
+    {
+      "id": "ollama-runner",
+      "name": "Ollama Runner",
+      "summary": "Run local models offline in your loop.",
+      "kind": "Plugin",
+      "glyph": "O",
+      "accent": "#FBBF24",
+      "source": "src/PMCR.OllamaRuntime",
+      "installed": false
+    },
+    {
+      "id": "aspire-orchestrator",
+      "name": "Aspire Orchestrator",
+      "summary": "Wire agents to distributed services.",
+      "kind": "Plugin",
+      "glyph": "A",
+      "accent": "#7C6CF6",
+      "source": "AppHost",
+      "installed": false
+    }
+  ],
+  "installed": [
+    {
+      "id": "pmcro-loop",
+      "name": "pmcro-loop",
+      "version": "1.0.0",
+      "summary": "The five-phase PMCR-O cycle.",
+      "kind": "Plugin",
+      "glyph": "L",
+      "accent": "#34D399",
+      "source": "plugins/pmcro-loop",
+      "installed": true
+    },
+    {
+      "id": "pmcro",
+      "name": "pmcro",
+      "version": "1.0.0",
+      "summary": "Core laws, agents and trail conventions.",
+      "kind": "Plugin",
+      "glyph": "P",
+      "accent": "#7C6CF6",
+      "source": "plugins/pmcro",
+      "installed": true
+    },
+    {
+      "id": "pmcro-code",
+      "name": "pmcro-code",
+      "version": "1.0.0",
+      "summary": "Code-mode executor tiers and checks.",
+      "kind": "Plugin",
+      "glyph": "C",
+      "accent": "#60A5FA",
+      "source": "plugins/pmcro-code",
+      "installed": true
+    },
+    {
+      "id": "pmcro-csuite",
+      "name": "pmcro-csuite",
+      "version": "1.0.0",
+      "summary": "Executive framing for seed intent.",
+      "kind": "Plugin",
+      "glyph": "S",
+      "accent": "#C084FC",
+      "source": "plugins/pmcro-csuite",
+      "installed": true
+    }
+  ]
+}

@@ -1,6 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Application\Application.csproj" />
+    <PackageReference Include="Microsoft.Agents.AI"/>
+    <PackageReference Include="Microsoft.Extensions.AI" />
   </ItemGroup>
 </Project>

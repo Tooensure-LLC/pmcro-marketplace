@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+# Adapt the package-manager command to the target repository.
+if [ -f package-lock.json ]; then
+  npm ci
+else
+  npm install
+fi

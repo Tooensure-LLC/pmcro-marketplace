@@ -1,0 +1,22 @@
+{
+  "template": "agent",
+  "name": "example-agent",
+  "version": "1.0.0",
+  "description": "Scaffolds a new *.agent.md role definition under plugins/<plugin_name>/agents/.",
+  "vars": {
+    "plugin_name": { "type": "string", "required": true },
+    "role_name": { "type": "string", "required": true },
+    "role_summary": { "type": "string", "required": true },
+    "does_not": { "type": "string", "required": false, "default": "does not self-score or repair another role's output." }
+  },
+  "declares": {
+    "files": [
+      {
+        "path": "plugins/{{plugin_name}}/agents/{{role_name}}.agent.md",
+        "body_ref": "agent_md"
+      }
+    ]
+  },
+  "requires_trail": true,
+  "laws": ["EC-SYS-003", "EC-004", "EC-PORTABLE-005"]
+}

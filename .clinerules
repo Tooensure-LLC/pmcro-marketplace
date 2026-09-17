@@ -1,0 +1,7 @@
+# Cline project rules — defer to AGENTS.md
+
+Read and obey **AGENTS.md** at the project root (five laws + pmcro-loop).
+
+On governed work, load `.cline/skills/pmcro-loop/SKILL.md`.
+Roles: `plugins/pmcro/agents/*.agent.md`.
+Laws: `.pmcro/laws.md`.

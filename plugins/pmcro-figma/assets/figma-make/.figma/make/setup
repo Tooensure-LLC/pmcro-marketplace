@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+# Adapt this template to the target repository's system dependencies.
+echo "Checking Figma Make system dependencies..."
+node --version
+npm --version
+echo "System dependencies verified."

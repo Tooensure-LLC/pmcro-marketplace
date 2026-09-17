@@ -4,32 +4,67 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.SegmentedControl;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:f="clr-namespace:ProjectName.App.Resources.Fonts"
     xmlns:pages="clr-namespace:ProjectName.App.Pages"
-    Shell.FlyoutBehavior="Flyout"
-    Title="ProjectName.App">
+    xmlns:pmcro="clr-namespace:ProjectName.App.Pages.Pmcro"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="{StaticResource PmcroBg}"
+    Shell.TabBarBackgroundColor="{StaticResource PmcroSurface}"
+    Shell.TabBarForegroundColor="{StaticResource PmcroPrimary}"
+    Shell.TabBarTitleColor="{StaticResource PmcroPrimary}"
+    Shell.TabBarUnselectedColor="{StaticResource PmcroTextSecondary}"
+    Title="pmcro">
 
-    <ShellContent
-        Title="PMCR-O"
-        ContentTemplate="{DataTemplate pages:PmcrPage}"
-        Route="pmcr" />
+    <Shell.Resources>
+        <!-- Tab glyphs. Selected / unselected tinting comes from Shell.TabBar*Color. -->
+        <FontImageSource x:Key="TabIconHome"
+                         Glyph="{x:Static f:FluentUI.home_24_regular}"
+                         FontFamily="{x:Static f:FluentUI.FontFamily}"
+                         Color="{StaticResource PmcroTextSecondary}" />
+        <FontImageSource x:Key="TabIconDiscover"
+                         Glyph="{x:Static f:FluentUI.compass_northwest_24_regular}"
+                         FontFamily="{x:Static f:FluentUI.FontFamily}"
+                         Color="{StaticResource PmcroTextSecondary}" />
+        <FontImageSource x:Key="TabIconTrails"
+                         Glyph="{x:Static f:FluentUI.document_24_regular}"
+                         FontFamily="{x:Static f:FluentUI.FontFamily}"
+                         Color="{StaticResource PmcroTextSecondary}" />
+        <FontImageSource x:Key="TabIconSettings"
+                         Glyph="{x:Static f:FluentUI.options_24_regular}"
+                         FontFamily="{x:Static f:FluentUI.FontFamily}"
+                         Color="{StaticResource PmcroTextSecondary}" />
+    </Shell.Resources>
 
-    <ShellContent
-        Title="Dashboard"
-        Icon="{StaticResource IconDashboard}"
-        ContentTemplate="{DataTemplate pages:MainPage}"
-        Route="main" />
+    <!-- Four tabs, matching the PMCR-O design. Nothing is orphaned: Discover is the
+         project browser, Settings is Manage Meta, and the Dashboard / PMCR-O runner
+         stay reachable as registered routes (see MauiProgram). -->
+    <TabBar>
 
-    <ShellContent
-        Title="Projects"
-        Icon="{StaticResource IconProjects}"
-        ContentTemplate="{DataTemplate pages:ProjectListPage}"
-        Route="projects" />
+        <ShellContent
+            Title="Home"
+            Icon="{StaticResource TabIconHome}"
+            ContentTemplate="{DataTemplate pmcro:MarketplacePage}"
+            Route="home" />
 
-    <ShellContent
-        Title="Manage Meta"
-        Icon="{StaticResource IconMeta}"
-        ContentTemplate="{DataTemplate pages:ManageMetaPage}"
-        Route="manage" />
+        <ShellContent
+            Title="Discover"
+            Icon="{StaticResource TabIconDiscover}"
+            ContentTemplate="{DataTemplate pages:ProjectListPage}"
+            Route="discover" />
+
+        <ShellContent
+            Title="Trails"
+            Icon="{StaticResource TabIconTrails}"
+            ContentTemplate="{DataTemplate pmcro:ActiveTrailPage}"
+            Route="trail" />
+
+        <ShellContent
+            Title="Settings"
+            Icon="{StaticResource TabIconSettings}"
+            ContentTemplate="{DataTemplate pmcro:SettingsPage}"
+            Route="settings" />
+
+    </TabBar>
 
     <Shell.FlyoutFooter>
         <Grid Padding="15">

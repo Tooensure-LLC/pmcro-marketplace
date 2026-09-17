@@ -22,6 +22,18 @@
       "name": "pmcro-code",
       "source": "./plugins/pmcro-code",
       "strict": false
+    },
+    {
+      "name": "pmcro-figma",
+      "source": "./plugins/pmcro-figma",
+      "strict": false,
+      "description": "PMCR-O governed Figma Make repository wiring and UI/UX workflow."
+    },
+    {
+      "name": "pmcro-dotnet",
+      "source": "./plugins/pmcro-dotnet",
+      "strict": false,
+      "description": "PMCR-O extensions for current .NET and .NET MAUI engineering skills."
     }
   ]
 }

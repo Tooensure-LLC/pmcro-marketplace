@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "ProjectName.MakerGrpc";
+
+package pmcro.v1;
+
+service Maker {
+  rpc RunCycle (Request) returns (Response);
+}
+
+message Request {
+  string intent = 1;
+  string approved_plan = 2;
+}
+
+message Response {
+  string result = 1;
+}

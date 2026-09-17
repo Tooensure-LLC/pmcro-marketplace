@@ -1,0 +1,36 @@
+{
+  "name": "pmcro-marketplace",
+  "description": "PMCR-O colony marketplace \u2014 Prod MAF + Aspire + Ollama + Generic UoW",
+  "owner": {
+    "name": "Tooensure-LLC"
+  },
+  "plugins": [
+    {
+      "name": "pmcro",
+      "source": "./plugins/pmcro",
+      "description": "Minimal PMCR-O loop with trails and five laws."
+    },
+    {
+      "name": "pmcro-loop",
+      "source": "./plugins/pmcro-loop"
+    },
+    {
+      "name": "pmcro-csuite",
+      "source": "./plugins/pmcro-csuite"
+    },
+    {
+      "name": "pmcro-code",
+      "source": "./plugins/pmcro-code"
+    },
+    {
+      "name": "pmcro-figma",
+      "source": "./plugins/pmcro-figma",
+      "description": "PMCR-O governed Figma Make repository wiring and UI/UX workflow."
+    },
+    {
+      "name": "pmcro-dotnet",
+      "source": "./plugins/pmcro-dotnet",
+      "description": "PMCR-O extensions for current .NET and .NET MAUI engineering skills."
+    }
+  ]
+}

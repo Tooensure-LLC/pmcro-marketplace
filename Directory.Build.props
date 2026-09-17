@@ -6,7 +6,7 @@
          10.0.3 is net10.0-only, and VS 18 ships the .NET 10 SDK. If
          the installed SDK list shows no 10.x, change this ONE line to net9.0 and
          switch the two lines marked NET9 in Directory.Packages.props. -->
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework Condition="'$(MSBuildProjectName)' != 'ProjectName.App'">net11.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>

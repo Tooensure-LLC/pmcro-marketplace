@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProjectName.App.Pages.Pmcro.CreatePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:f="clr-namespace:ProjectName.App.Resources.Fonts"
+    xmlns:models="clr-namespace:ProjectName.App.Models"
+    xmlns:pageModels="clr-namespace:ProjectName.App.PageModels"
+    x:DataType="pageModels:CreatePageModel"
+    Style="{StaticResource PmcroPage}"
+    Title="Create">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- ===== CHROME ===== -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Padding="20,16,20,4" ColumnSpacing="14">
+            <Border Grid.Column="0" Style="{StaticResource PmcroChip}" Padding="0"
+                    WidthRequest="44" HeightRequest="44">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Border.GestureRecognizers>
+                <Label Text="{x:Static f:FluentUI.chevron_left_24_regular}"
+                       FontFamily="{x:Static f:FluentUI.FontFamily}"
+                       TextColor="{StaticResource PmcroTextPrimary}" FontSize="20"
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+            </Border>
+
+            <Label Grid.Column="1" Text="Create" Style="{StaticResource PmcroDisplay}"
+                   VerticalOptions="Center" />
+
+            <Border Grid.Column="2" Style="{StaticResource PmcroAvatar}">
+                <Label Text="S" TextColor="{StaticResource PmcroTextHeading}"
+                       FontAttributes="Bold" FontSize="{StaticResource PmcroFontHeading}"
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+            </Border>
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20,8,20,24" Spacing="0">
+
+                <Label Text="Generate a new skill, plugin, agent, or product from a declarative template."
+                       Style="{StaticResource PmcroBody}" />
+
+                <!-- ===== TEMPLATE KIND ===== -->
+                <CollectionView ItemsSource="{Binding Kinds}" SelectionMode="None" Margin="0,20,0,0">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2"
+                                         HorizontalItemSpacing="12" VerticalItemSpacing="12" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:TemplateKind">
+                            <Border Style="{StaticResource PmcroCard}"
+                                    BackgroundColor="{Binding CardBackground}"
+                                    Stroke="{Binding CardStroke}">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type pageModels:CreatePageModel}}, Path=SelectCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout Spacing="10">
+                                    <Border WidthRequest="40" HeightRequest="40"
+                                            StrokeThickness="0" StrokeShape="RoundRectangle 10"
+                                            HorizontalOptions="Start"
+                                            BackgroundColor="{Binding TileBackground}">
+                                        <Label Text="{Binding Abbreviation}"
+                                               TextColor="{Binding TileTextColor}"
+                                               FontAttributes="Bold" FontSize="15"
+                                               HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </Border>
+                                    <Label Text="{Binding Title}" Style="{StaticResource PmcroSectionHeading}" />
+                                    <Label Text="{Binding Summary}" Style="{StaticResource PmcroBody}" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- ===== FIELDS ===== -->
+                <Label Text="Plugin name" Style="{StaticResource PmcroFieldLabel}" Margin="0,26,0,8" />
+                <Border Style="{StaticResource PmcroField}">
+                    <Entry Style="{StaticResource PmcroEntry}" Placeholder="pmcro"
+                           Text="{Binding PluginName}" />
+                </Border>
+
+                <Label Text="Skill name" Style="{StaticResource PmcroFieldLabel}" Margin="0,20,0,8" />
+                <Border Style="{StaticResource PmcroField}">
+                    <Entry Style="{StaticResource PmcroEntry}" Placeholder="pmcro-theming"
+                           Text="{Binding ArtifactName}" />
+                </Border>
+
+                <Label Text="Description" Style="{StaticResource PmcroFieldLabel}" Margin="0,20,0,8" />
+                <Border Style="{StaticResource PmcroField}">
+                    <Entry Style="{StaticResource PmcroEntry}"
+                           Placeholder="Design tokens &amp; trail-aware themes."
+                           Text="{Binding Description}" />
+                </Border>
+
+                <!-- ===== DECLARES ===== -->
+                <Label Text="DECLARES" Style="{StaticResource PmcroEyebrow}" Margin="0,28,0,10" />
+
+                <Border Style="{StaticResource PmcroInset}">
+                    <VerticalStackLayout Spacing="8" BindableLayout.ItemsSource="{Binding Declares}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="x:String">
+                                <Label Text="{Binding .}" Style="{StaticResource PmcroMono}"
+                                       TextColor="{StaticResource PmcroTextPrimary}"
+                                       LineBreakMode="WordWrap" />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- ===== ACTION ===== -->
+        <VerticalStackLayout Grid.Row="2" Padding="20,14,20,18" Spacing="10"
+                             BackgroundColor="{StaticResource PmcroSurface}">
+            <Button Text="{Binding GenerateLabel}" Style="{StaticResource PmcroButtonPrimary}"
+                    IsEnabled="{Binding CanGenerate}" />
+            <Label Text="Opens a trail before writing - Log Before Act"
+                   Style="{StaticResource PmcroCaption}"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

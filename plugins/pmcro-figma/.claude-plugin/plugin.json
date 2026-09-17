@@ -1,0 +1,9 @@
+{
+  "name": "pmcro-figma",
+  "version": "1.0.0",
+  "description": "PMCR-O governed Figma Make repository wiring and UI/UX workflow.",
+  "author": {
+    "name": "Tooensure"
+  },
+  "keywords": ["pmcro", "figma", "figma-make", "ui", "ux", "mcp"]
+}

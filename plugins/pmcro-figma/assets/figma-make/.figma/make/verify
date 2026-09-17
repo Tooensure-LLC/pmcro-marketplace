@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+
+# Replace this endpoint with the target app's real readiness/health endpoint.
+HEALTHCHECK_ENDPOINT="${FIGMA_MAKE_URL}/health"
+MAX_WAIT=120
+INTERVAL=2
+ELAPSED=0
+
+echo "Waiting for development server..."
+while [ "$ELAPSED" -lt "$MAX_WAIT" ]; do
+  if curl -sf "$HEALTHCHECK_ENDPOINT" >/dev/null 2>&1; then
+    echo "Development server is ready."
+    exit 0
+  fi
+  sleep "$INTERVAL"
+  ELAPSED=$((ELAPSED + INTERVAL))
+done
+
+echo "Development server did not become ready within ${MAX_WAIT}s."
+exit 1

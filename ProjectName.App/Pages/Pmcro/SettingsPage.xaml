@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProjectName.App.Pages.Pmcro.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:f="clr-namespace:ProjectName.App.Resources.Fonts"
+    xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.SegmentedControl;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:pageModels="clr-namespace:ProjectName.App.PageModels"
+    x:DataType="pageModels:SettingsPageModel"
+    Style="{StaticResource PmcroPage}"
+    Title="Settings">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,20,20,40" Spacing="0">
+
+            <Label Text="Settings" Style="{StaticResource PmcroDisplay}" />
+            <Label Text="Runtime, appearance and workspace" Style="{StaticResource PmcroBody}" />
+
+            <!-- ===== ORCHESTRATOR ===== -->
+            <Label Text="ORCHESTRATOR" Style="{StaticResource PmcroEyebrow}" Margin="0,28,0,10" />
+
+            <Border Style="{StaticResource PmcroCard}">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Endpoint" Style="{StaticResource PmcroFieldLabel}" />
+                    <Label Text="Where the PMCR-O runner posts cycles. Per-machine, stored outside the build."
+                           Style="{StaticResource PmcroBody}" />
+
+                    <Border Style="{StaticResource PmcroField}"
+                            BackgroundColor="{StaticResource PmcroSurface}">
+                        <Entry Style="{StaticResource PmcroEntry}"
+                               Placeholder="http://localhost:5100/"
+                               Keyboard="Url"
+                               Text="{Binding ApiUrl}" />
+                    </Border>
+
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                        <Button Grid.Column="0" Text="Save"
+                                Style="{StaticResource PmcroButtonCompact}"
+                                Command="{Binding SaveApiUrlCommand}" />
+                        <Button Grid.Column="1" Text="Reset"
+                                Style="{StaticResource PmcroButtonGhost}"
+                                HeightRequest="44" FontSize="{StaticResource PmcroFontBody}"
+                                Command="{Binding ResetApiUrlCommand}" />
+                    </Grid>
+
+                    <Label Text="{Binding ApiUrlStatus}" Style="{StaticResource PmcroCaption}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- ===== APPEARANCE ===== -->
+            <Label Text="APPEARANCE" Style="{StaticResource PmcroEyebrow}" Margin="0,28,0,10" />
+
+            <Border Style="{StaticResource PmcroCard}">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Theme" Style="{StaticResource PmcroFieldLabel}" />
+                    <Label Text="PMCR-O screens are authored dark; light mode still applies to the project pages."
+                           Style="{StaticResource PmcroBody}" />
+
+                    <sf:SfSegmentedControl SelectedIndex="{Binding ThemeIndex}"
+                                           SegmentHeight="40"
+                                           HorizontalOptions="Fill">
+                        <sf:SfSegmentedControl.ItemsSource>
+                            <x:Array Type="{x:Type sf:SfSegmentItem}">
+                                <sf:SfSegmentItem Text="System" />
+                                <sf:SfSegmentItem Text="Light" />
+                                <sf:SfSegmentItem Text="Dark" />
+                            </x:Array>
+                        </sf:SfSegmentedControl.ItemsSource>
+                    </sf:SfSegmentedControl>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- ===== WORKSPACE ===== -->
+            <Label Text="WORKSPACE" Style="{StaticResource PmcroEyebrow}" Margin="0,28,0,10" />
+
+            <VerticalStackLayout Spacing="10">
+
+                <Border Style="{StaticResource PmcroCard}" Padding="14">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenMetaCommand}" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Grid.Column="0" Spacing="2">
+                            <Label Text="Categories &amp; tags" Style="{StaticResource PmcroBodyStrong}" />
+                            <Label Text="Edit the project taxonomy" Style="{StaticResource PmcroCaption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="{x:Static f:FluentUI.chevron_right_24_regular}"
+                               FontFamily="{x:Static f:FluentUI.FontFamily}"
+                               TextColor="{StaticResource PmcroTextMuted}" FontSize="18"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource PmcroCard}" Padding="14">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenDashboardCommand}" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Grid.Column="0" Spacing="2">
+                            <Label Text="Dashboard" Style="{StaticResource PmcroBodyStrong}" />
+                            <Label Text="Task and category overview" Style="{StaticResource PmcroCaption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="{x:Static f:FluentUI.chevron_right_24_regular}"
+                               FontFamily="{x:Static f:FluentUI.FontFamily}"
+                               TextColor="{StaticResource PmcroTextMuted}" FontSize="18"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource PmcroCard}" Padding="14">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenRunnerCommand}" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Grid.Column="0" Spacing="2">
+                            <Label Text="PMCR-O runner" Style="{StaticResource PmcroBodyStrong}" />
+                            <Label Text="Post a seed intent and watch the cycle"
+                                   Style="{StaticResource PmcroCaption}" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1" Text="{x:Static f:FluentUI.chevron_right_24_regular}"
+                               FontFamily="{x:Static f:FluentUI.FontFamily}"
+                               TextColor="{StaticResource PmcroTextMuted}" FontSize="18"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+
+            <Label Text="{Binding VersionLabel}" Style="{StaticResource PmcroCaption}"
+                   HorizontalTextAlignment="Center" Margin="0,28,0,0" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

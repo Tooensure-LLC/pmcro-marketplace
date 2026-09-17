@@ -9,6 +9,10 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
                 <ResourceDictionary Source="Resources/Styles/AppStyles.xaml" />
+                <!-- PMCR-O design layer. Merged last; all keys are Pmcro-prefixed so
+                     nothing above is shadowed and the existing pages are untouched. -->
+                <ResourceDictionary Source="Resources/Styles/PmcroTokens.xaml" />
+                <ResourceDictionary Source="Resources/Styles/PmcroComponents.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,0 +1,42 @@
+{
+  "template": "product",
+  "name": "example-product",
+  "version": "1.0.0",
+  "description": "Scaffolds a whole installable product (a new marketplace-style product for Tooensure) by composing plugin, skill and agent templates rather than raw file bodies.",
+  "vars": {
+    "product_name": { "type": "string", "required": true },
+    "owner_name": { "type": "string", "required": true, "default": "Tooensure" },
+    "plugin_names": { "type": "string", "required": true, "default": "[\"core\"]" }
+  },
+  "declares": {
+    "files": [
+      {
+        "path": "products/{{product_name}}/.claude-plugin/marketplace.json",
+        "body_ref": "marketplace_json"
+      },
+      {
+        "path": "products/{{product_name}}/.codex-plugin/marketplace.json",
+        "body_ref": "marketplace_json"
+      },
+      {
+        "path": "products/{{product_name}}/.cursor-plugin/marketplace.json",
+        "body_ref": "marketplace_json"
+      },
+      {
+        "path": "products/{{product_name}}/.agents/plugins/marketplace.json",
+        "body_ref": "marketplace_json"
+      },
+      {
+        "path": "products/{{product_name}}/AGENTS.md",
+        "body_ref": "agents_md"
+      }
+    ],
+    "composes": [
+      { "template": "plugin", "for_each": "plugin_names" },
+      { "template": "skill", "for_each": "plugin_names.skill_names" },
+      { "template": "agent", "for_each": "plugin_names.agent_roles" }
+    ]
+  },
+  "requires_trail": true,
+  "laws": ["EC-SYS-003", "EC-VERIFY-FIRST-001", "EC-004", "EC-009", "EC-PORTABLE-005"]
+}

@@ -27,10 +27,11 @@ public static class PLAN_001
     }
 }
 
-public static class EarnedConstraints
-{
-    // Constraints earned during Reflector phase
-    public const string NoHardcodedPaths = "Earned: No hardcoded absolute paths — use Aspire volumes";
-    public const string NoNewInUoW = "Earned: UoW stays closed — use Repository<T>() + GetRepository<TRepo>()";
-    public const string TrailSealedImmutable = "Earned: Sealed trail is immutable, export to .pmcro/trails for audit";
-}
+// The static EarnedConstraints class that used to live here (three hardcoded, hand-seeded
+// strings: NoHardcodedPaths, NoNewInUoW, TrailSealedImmutable) has been removed. Those three
+// were never actually earned by a Reflector promoting a real LOOP -> ACCEPT trail — they were
+// invented, which is the opposite of what "earned" is supposed to mean here.
+// The single real representation is now Domain.Entities.EarnedConstraint, persisted through
+// IUnitOfWork like Trail/Frame. It starts empty and only ReflectorAgent (once implemented,
+// see .pmcro/tool-reference.md — currently a stub) may add rows to it, one per genuinely
+// earned lesson.

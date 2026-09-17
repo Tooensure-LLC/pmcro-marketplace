@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProjectName.App.Models;
+using ProjectName.App.Resources.Fonts;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 

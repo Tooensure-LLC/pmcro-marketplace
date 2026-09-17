@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>net11.0</TargetFramework>
+		<RootNamespace>ProjectName.MakerGrpc</RootNamespace>
+		<NoWarn>$(NoWarn);EXTEXP0001;MAAI001;MAAI002</NoWarn>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<UserSecretsId>c375b7ae-ad76-486b-a9d8-4800ce81862e</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..</DockerfileContext>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" />
+		<PackageReference Include="Grpc.AspNetCore.Server.Reflection" />
+
+		<PackageReference Include="ModelContextProtocol" />
+
+		<PackageReference Include="Microsoft.Agents.AI" />
+		<PackageReference Include="Microsoft.Agents.AI.Abstractions" />
+		<PackageReference Include="Microsoft.Agents.AI.Hyperlight" />
+		<PackageReference Include="Hyperlight.HyperlightSandbox.Guest.Python" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+		<PackageReference Include="Microsoft.Agents.AI.Workflows" />
+		<PackageReference Include="Microsoft.Agents.AI.Workflows.Declarative" />
+		<PackageReference Include="Microsoft.Agents.AI.Hosting" />
+		<PackageReference Include="Microsoft.Agents.AI.Hosting.OpenAI" />
+		<PackageReference Include="Microsoft.Agents.AI.DevUI" />
+		<PackageReference Include="Microsoft.Agents.AI.Harness" />
+		<PackageReference Include="Microsoft.Agents.AI.Hosting.AGUI.AspNetCore" />
+
+		<PackageReference Include="Microsoft.Extensions.AI" />
+		<PackageReference Include="Microsoft.Extensions.AI.Abstractions" />
+		<PackageReference Include="Microsoft.Extensions.Http.Resilience" />
+		<PackageReference Include="Microsoft.Extensions.ServiceDiscovery" />
+		<PackageReference Include="OllamaSharp" />
+
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="Protos\maker.proto" GrpcServices="Both" />
+
+		<ProjectReference Include="..\..\ProjectName.ServiceDefaults\ProjectName.ServiceDefaults.csproj" />
+		<ProjectReference Include="..\..\PMCR.Core\PMCR.Core.csproj" />
+	</ItemGroup>
+
+	<!-- ARCH-MAF-NATIVE-002: skills are not embedded into the service binary.
+	     MarketplaceSkillsMaterializer reads .agents/plugins/marketplace.json and
+	     mirrors registered skills into .pmcro/skills-staging before the native
+	     AgentSkillsProvider is resolved. Keeping a second embedded-resource path
+	     would create two competing skill sources and stale production behavior. -->
+</Project>

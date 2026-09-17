@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    PMCR-O design tokens.
+    Source of truth: Figma Make "Integrate GitHub Connector" (Home / Create / Active Trail).
+    Additive layer - every key is Pmcro-prefixed so nothing in Colors.xaml or
+    AppStyles.xaml is shadowed. Merge LAST in App.xaml.
+-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- ============ SURFACE RAMP ============ -->
+    <Color x:Key="PmcroBg">#0B0D12</Color>
+    <Color x:Key="PmcroSurface">#0F1116</Color>
+    <Color x:Key="PmcroSurfaceRaised">#161920</Color>
+    <Color x:Key="PmcroSurfaceMuted">#1D2129</Color>
+    <Color x:Key="PmcroOverlay">#12141A</Color>
+
+    <!-- ============ LINE ============ -->
+    <Color x:Key="PmcroBorder">#262B36</Color>
+    <Color x:Key="PmcroBorderStrong">#3A3F4A</Color>
+
+    <!-- ============ TEXT RAMP ============ -->
+    <Color x:Key="PmcroTextPrimary">#F5F6F8</Color>
+    <Color x:Key="PmcroTextHeading">#FCFCFC</Color>
+    <Color x:Key="PmcroTextSecondary">#8B92A3</Color>
+    <Color x:Key="PmcroTextMuted">#6B7280</Color>
+    <Color x:Key="PmcroTextDisabled">#4B5563</Color>
+
+    <!-- ============ BRAND / ACCENT ============ -->
+    <Color x:Key="PmcroPrimary">#7C6CF6</Color>
+    <Color x:Key="PmcroPrimaryPressed">#6A59E8</Color>
+    <Color x:Key="PmcroPrimarySubtle">#171729</Color>
+    <Color x:Key="PmcroOnPrimary">#0B0D12</Color>
+
+    <!-- Emerald = trail / loop state, never decoration -->
+    <Color x:Key="PmcroAccent">#34D399</Color>
+    <Color x:Key="PmcroAccentPressed">#26B383</Color>
+    <Color x:Key="PmcroOnAccent">#0B0D12</Color>
+
+    <!-- ============ PMCR-O PHASE COLORS ============ -->
+    <Color x:Key="PmcroPhaseDone">#34D399</Color>
+    <Color x:Key="PmcroPhaseActive">#34D399</Color>
+    <Color x:Key="PmcroPhasePending">#3A3F4A</Color>
+    <Color x:Key="PmcroPhaseHalted">#F87171</Color>
+
+    <!-- ============ AGENT ROLE COLORS (log stream) ============ -->
+    <Color x:Key="PmcroRoleOrchestrator">#7C6CF6</Color>
+    <Color x:Key="PmcroRolePlanner">#60A5FA</Color>
+    <Color x:Key="PmcroRoleMaker">#FBBF24</Color>
+    <Color x:Key="PmcroRoleChecker">#34D399</Color>
+    <Color x:Key="PmcroRoleReflector">#C084FC</Color>
+
+    <!-- ============ BRUSHES ============ -->
+    <SolidColorBrush x:Key="PmcroBgBrush" Color="{StaticResource PmcroBg}" />
+    <SolidColorBrush x:Key="PmcroSurfaceBrush" Color="{StaticResource PmcroSurface}" />
+    <SolidColorBrush x:Key="PmcroSurfaceRaisedBrush" Color="{StaticResource PmcroSurfaceRaised}" />
+    <SolidColorBrush x:Key="PmcroBorderBrush" Color="{StaticResource PmcroBorder}" />
+    <SolidColorBrush x:Key="PmcroPrimaryBrush" Color="{StaticResource PmcroPrimary}" />
+    <SolidColorBrush x:Key="PmcroAccentBrush" Color="{StaticResource PmcroAccent}" />
+
+    <!-- ============ RADII ============ -->
+    <x:Double x:Key="PmcroRadiusSm">8</x:Double>
+    <x:Double x:Key="PmcroRadiusMd">12</x:Double>
+    <x:Double x:Key="PmcroRadiusLg">16</x:Double>
+    <x:Double x:Key="PmcroRadiusPill">24</x:Double>
+
+    <!-- ============ SPACING (4pt base) ============ -->
+    <x:Double x:Key="PmcroSpace1">4</x:Double>
+    <x:Double x:Key="PmcroSpace2">8</x:Double>
+    <x:Double x:Key="PmcroSpace3">12</x:Double>
+    <x:Double x:Key="PmcroSpace4">16</x:Double>
+    <x:Double x:Key="PmcroSpace5">20</x:Double>
+    <x:Double x:Key="PmcroSpace6">24</x:Double>
+    <x:Double x:Key="PmcroSpace8">32</x:Double>
+    <Thickness x:Key="PmcroPagePadding">20,16,20,16</Thickness>
+    <Thickness x:Key="PmcroCardPadding">16</Thickness>
+
+    <!-- ============ TYPE SCALE ============ -->
+    <x:Double x:Key="PmcroFontDisplay">34</x:Double>
+    <x:Double x:Key="PmcroFontTitle">22</x:Double>
+    <x:Double x:Key="PmcroFontHeading">18</x:Double>
+    <x:Double x:Key="PmcroFontBody">15</x:Double>
+    <x:Double x:Key="PmcroFontLabel">13</x:Double>
+    <x:Double x:Key="PmcroFontMicro">11</x:Double>
+
+    <!-- ============ FONT FAMILIES ============ -->
+    <!-- Inter (UI) and JetBrains Mono (code/trail), both SIL OFL and bundled in
+         Resources/Fonts. Registered per weight in MauiProgram; see the note there. -->
+    <x:String x:Key="PmcroFontUI">Inter</x:String>
+    <x:String x:Key="PmcroFontUISemi">InterSemiBold</x:String>
+    <x:String x:Key="PmcroFontUIBold">InterBold</x:String>
+    <x:String x:Key="PmcroMonoFont">Mono</x:String>
+    <x:String x:Key="PmcroMonoFontBold">MonoBold</x:String>
+
+    <!-- ============ MOTION / ELEVATION ============ -->
+    <x:Double x:Key="PmcroBorderWidth">1</x:Double>
+    <x:Double x:Key="PmcroTouchTargetMin">44</x:Double>
+</ResourceDictionary>

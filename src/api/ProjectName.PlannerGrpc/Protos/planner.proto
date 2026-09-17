@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// Distinct namespace to avoid collision with ProjectName.PlannerService (the assembly)
+option csharp_namespace = "ProjectName.PlannerGrpc";
+
+package pmcro.v1;
+
+service Planner {
+  rpc RunCycle (Request) returns (Response);
+}
+
+message Request {
+  string messy_seed_intent   = 1;
+}
+
+message Response {
+  string true_seed_intent   = 1;
+}

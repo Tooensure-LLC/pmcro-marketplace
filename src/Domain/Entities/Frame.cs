@@ -2,7 +2,7 @@ using Domain.Common;
 
 namespace Domain.Entities;
 
-public class Frame : BaseEntity
+public class Frame : BaseEntity, IAppendOnlyEntity
 {
     public Guid TrailId { get; set; }
     public Trail Trail { get; set; } = default!;

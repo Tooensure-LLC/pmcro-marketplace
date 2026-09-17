@@ -9,6 +9,7 @@
              x:Class="ProjectName.App.Pages.MainPage"
              x:DataType="pageModels:MainPageModel"
              x:Name="OverviewPage"
+             Style="{StaticResource PmcroDetailPage}"
              Title="{Binding Today}">
 
     <ContentPage.Behaviors>

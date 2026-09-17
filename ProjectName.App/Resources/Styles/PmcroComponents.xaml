@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    PMCR-O component styles. Consumes PmcroTokens.xaml only - no raw hex below this line.
+-->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:utilities="clr-namespace:ProjectName.App.Utilities">
+
+    <!-- ===================== CONVERTERS ===================== -->
+    <utilities:IsZeroConverter x:Key="PmcroIsZeroConverter" />
+    <utilities:IsNotZeroConverter x:Key="PmcroIsNotZeroConverter" />
+    <utilities:IsNotEmptyConverter x:Key="PmcroIsNotEmptyConverter" />
+
+    <!-- ===================== PAGE ===================== -->
+    <Style x:Key="PmcroPage" TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroBg}" />
+        <Setter Property="Shell.NavBarIsVisible" Value="False" />
+        <!--
+            .NET 10 changed ContentPage's Android default from Container to None
+            (edge-to-edge). These pages pin a header row and, on the trail, a bottom
+            action bar - under the new default both would sit beneath the status and
+            navigation bars. Declared explicitly rather than inherited, because the
+            default moved once and can move again.
+        -->
+        <Setter Property="SafeAreaEdges" Value="Container" />
+    </Style>
+
+    <!--
+        Pushed pages keep the Shell nav bar (they need the back affordance) but move
+        onto the PMCR-O surface so navigation out of a tab does not cross a seam.
+    -->
+    <Style x:Key="PmcroDetailPage" TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroBg}" />
+        <Setter Property="Shell.BackgroundColor" Value="{StaticResource PmcroSurface}" />
+        <Setter Property="Shell.ForegroundColor" Value="{StaticResource PmcroTextHeading}" />
+        <Setter Property="Shell.TitleColor" Value="{StaticResource PmcroTextHeading}" />
+        <Setter Property="Shell.DisabledColor" Value="{StaticResource PmcroTextDisabled}" />
+        <Setter Property="Shell.UnselectedColor" Value="{StaticResource PmcroTextSecondary}" />
+        <!-- Detail pages carry text entries, so they avoid the keyboard as well as the bars. -->
+        <Setter Property="SafeAreaEdges" Value="All" />
+    </Style>
+
+    <!-- ===================== TEXT ===================== -->
+    <Style x:Key="PmcroDisplay" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextHeading}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontDisplay}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="PmcroTitle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextHeading}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontTitle}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="PmcroSectionHeading" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextHeading}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontHeading}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="PmcroBody" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextSecondary}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontBody}" />
+    </Style>
+
+    <Style x:Key="PmcroBodyStrong" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextPrimary}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontBody}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="PmcroCaption" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextMuted}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontLabel}" />
+    </Style>
+
+    <!-- Eyebrow: uppercase, tracked, muted. "DECLARES", "LOG", "TRAIL SEALED" -->
+    <Style x:Key="PmcroEyebrow" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextMuted}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontLabel}" />
+        <Setter Property="FontFamily" Value="{StaticResource PmcroMonoFont}" />
+        <Setter Property="CharacterSpacing" Value="2" />
+    </Style>
+
+    <!-- Monospace: trail ids, file paths, log lines. Log Before Act evidence reads as code. -->
+    <Style x:Key="PmcroMono" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextSecondary}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontLabel}" />
+        <Setter Property="FontFamily" Value="{StaticResource PmcroMonoFont}" />
+    </Style>
+
+    <!-- ===================== SURFACES ===================== -->
+    <Style x:Key="PmcroCard" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroSurfaceRaised}" />
+        <Setter Property="Stroke" Value="{StaticResource PmcroBorderBrush}" />
+        <Setter Property="StrokeThickness" Value="{StaticResource PmcroBorderWidth}" />
+        <Setter Property="Padding" Value="{StaticResource PmcroCardPadding}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+    </Style>
+
+    <Style x:Key="PmcroCardSelected" TargetType="Border" BasedOn="{StaticResource PmcroCard}">
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroPrimarySubtle}" />
+        <Setter Property="Stroke" Value="{StaticResource PmcroPrimaryBrush}" />
+    </Style>
+
+    <!-- Inset surface: log block, code block. Recedes instead of lifting. -->
+    <Style x:Key="PmcroInset" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroSurface}" />
+        <Setter Property="Stroke" Value="{StaticResource PmcroBorderBrush}" />
+        <Setter Property="StrokeThickness" Value="{StaticResource PmcroBorderWidth}" />
+        <Setter Property="Padding" Value="{StaticResource PmcroCardPadding}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+    </Style>
+
+    <!-- ===================== CHIPS / PILLS ===================== -->
+    <Style x:Key="PmcroChip" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroSurfaceRaised}" />
+        <Setter Property="Stroke" Value="{StaticResource PmcroBorderBrush}" />
+        <Setter Property="StrokeThickness" Value="{StaticResource PmcroBorderWidth}" />
+        <Setter Property="Padding" Value="18,10" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+    </Style>
+
+    <Style x:Key="PmcroChipSelected" TargetType="Border" BasedOn="{StaticResource PmcroChip}">
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroPrimary}" />
+        <Setter Property="Stroke" Value="{StaticResource PmcroPrimaryBrush}" />
+    </Style>
+
+    <Style x:Key="PmcroChipLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextPrimary}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontBody}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="PmcroChipLabelSelected" TargetType="Label" BasedOn="{StaticResource PmcroChipLabel}">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextHeading}" />
+    </Style>
+
+    <!-- Small tag next to the wordmark: APP / CLI -->
+    <Style x:Key="PmcroTag" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="Stroke" Value="{StaticResource PmcroBorderStrong}" />
+        <Setter Property="StrokeThickness" Value="{StaticResource PmcroBorderWidth}" />
+        <Setter Property="Padding" Value="8,3" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 6" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <!-- ===================== BUTTONS ===================== -->
+    <Style x:Key="PmcroButtonPrimary" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroPrimary}" />
+        <Setter Property="TextColor" Value="{StaticResource PmcroOnPrimary}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontHeading}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="HeightRequest" Value="56" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource PmcroPrimaryPressed}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource PmcroSurfaceMuted}" />
+                            <Setter Property="TextColor" Value="{StaticResource PmcroTextDisabled}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <!-- Accent = advance the loop. Approve, Seal, Run. -->
+    <Style x:Key="PmcroButtonAccent" TargetType="Button" BasedOn="{StaticResource PmcroButtonPrimary}">
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroAccent}" />
+        <Setter Property="TextColor" Value="{StaticResource PmcroOnAccent}" />
+    </Style>
+
+    <!-- Ghost = step away from the loop. Halt, Cancel, Back. -->
+    <Style x:Key="PmcroButtonGhost" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextPrimary}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontHeading}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="HeightRequest" Value="56" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="BorderColor" Value="{StaticResource PmcroBorder}" />
+    </Style>
+
+    <!-- Small pill CTA inside a card: "Get" -->
+    <Style x:Key="PmcroButtonCompact" TargetType="Button" BasedOn="{StaticResource PmcroButtonPrimary}">
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontBody}" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="CornerRadius" Value="10" />
+    </Style>
+
+    <!-- ===================== INPUTS ===================== -->
+    <Style x:Key="PmcroField" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroSurfaceRaised}" />
+        <Setter Property="Stroke" Value="{StaticResource PmcroBorderBrush}" />
+        <Setter Property="StrokeThickness" Value="{StaticResource PmcroBorderWidth}" />
+        <Setter Property="Padding" Value="14,2" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+        <Setter Property="MinimumHeightRequest" Value="{StaticResource PmcroTouchTargetMin}" />
+    </Style>
+
+    <Style x:Key="PmcroEntry" TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextPrimary}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource PmcroTextMuted}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontBody}" />
+        <Setter Property="HeightRequest" Value="48" />
+    </Style>
+
+    <Style x:Key="PmcroFieldLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextPrimary}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontBody}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <!-- ===================== TRAIL TIMELINE ===================== -->
+    <Style x:Key="PmcroTrailNode" TargetType="Border">
+        <Setter Property="WidthRequest" Value="26" />
+        <Setter Property="HeightRequest" Value="26" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 13" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+
+    <Style x:Key="PmcroTrailNodeDone" TargetType="Border" BasedOn="{StaticResource PmcroTrailNode}">
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroPhaseDone}" />
+        <Setter Property="Stroke" Value="{StaticResource PmcroAccentBrush}" />
+    </Style>
+
+    <Style x:Key="PmcroTrailNodePending" TargetType="Border" BasedOn="{StaticResource PmcroTrailNode}">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="Stroke" Value="{StaticResource PmcroBorderStrong}" />
+    </Style>
+
+    <Style x:Key="PmcroTrailPhaseDone" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextHeading}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontHeading}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="PmcroTrailPhasePending" TargetType="Label" BasedOn="{StaticResource PmcroTrailPhaseDone}">
+        <Setter Property="TextColor" Value="{StaticResource PmcroTextMuted}" />
+    </Style>
+
+    <!-- ===================== STATUS DOT ===================== -->
+    <Style x:Key="PmcroStatusDot" TargetType="Border">
+        <Setter Property="WidthRequest" Value="8" />
+        <Setter Property="HeightRequest" Value="8" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 4" />
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroAccent}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <Style x:Key="PmcroStatusLabel" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource PmcroAccent}" />
+        <Setter Property="FontSize" Value="{StaticResource PmcroFontLabel}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CharacterSpacing" Value="1.5" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <!-- ===================== AVATAR / ICON TILE ===================== -->
+    <Style x:Key="PmcroAvatar" TargetType="Border">
+        <Setter Property="WidthRequest" Value="44" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 22" />
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroPrimary}" />
+    </Style>
+
+    <Style x:Key="PmcroIconTile" TargetType="Border">
+        <Setter Property="WidthRequest" Value="44" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        <Setter Property="BackgroundColor" Value="{StaticResource PmcroSurfaceMuted}" />
+    </Style>
+</ResourceDictionary>

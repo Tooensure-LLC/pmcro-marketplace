@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.agents",
+    "\\src",
+    "\\src\\ProjectName.OrchestratorApi",
+    "\\src\\ProjectName.OrchestratorService"
+  ],
+  "SelectedNode": "\\src\\ProjectName.OrchestratorService",
+  "PreviewInSolutionExplorer": false
+}

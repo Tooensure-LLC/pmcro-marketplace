@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProjectName.App.Pages.Pmcro.DsoScreenPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:f="clr-namespace:ProjectName.App.Resources.Fonts"
+    xmlns:models="clr-namespace:ProjectName.App.Models"
+    xmlns:pageModels="clr-namespace:ProjectName.App.PageModels"
+    xmlns:pmcro="clr-namespace:ProjectName.App.Pages.Pmcro"
+    x:DataType="pageModels:DsoScreenPageModel"
+    Style="{StaticResource PmcroDetailPage}"
+    Title="{Binding Title}">
+
+    <ContentPage.Resources>
+
+        <!-- A resource card. Every shape below reuses this; tapping opens the same page. -->
+        <DataTemplate x:Key="DsoCard" x:DataType="models:Dso">
+            <Border Style="{StaticResource PmcroCard}" Padding="12">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type pageModels:DsoScreenPageModel}}, Path=OpenCommand, x:DataType=pageModels:DsoScreenPageModel}"
+                        CommandParameter="{Binding .}" />
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                    <Border Grid.Column="0" Style="{StaticResource PmcroIconTile}"
+                            WidthRequest="38" HeightRequest="38"
+                            BackgroundColor="{Binding Accent}" Opacity="0.22" />
+                    <Label Grid.Column="0" Text="{Binding Glyph}" TextColor="{Binding Accent}"
+                           FontAttributes="Bold" FontSize="13"
+                           WidthRequest="38" HeightRequest="38"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="{Binding Name}" Style="{StaticResource PmcroBodyStrong}" />
+                        <Label Text="{Binding SubtitleOrPath}" Style="{StaticResource PmcroCaption}"
+                               LineBreakMode="TailTruncation" MaxLines="2" />
+                    </VerticalStackLayout>
+
+                    <Label Grid.Column="2" Text="{x:Static f:FluentUI.chevron_right_24_regular}"
+                           FontFamily="{x:Static f:FluentUI.FontFamily}"
+                           TextColor="{StaticResource PmcroTextMuted}" FontSize="16"
+                           VerticalOptions="Center" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <!-- ================= SHAPE: CATALOG ================= -->
+        <DataTemplate x:Key="ShapeCatalog" x:DataType="models:Dso">
+            <!-- Rebinding the context also needs x:DataType, or every binding below
+                 silently drops to reflection (MAUIG2045). -->
+            <VerticalStackLayout Spacing="0"
+                                 x:DataType="pageModels:DsoScreenPageModel"
+                                 BindingContext="{Binding Source={RelativeSource AncestorType={x:Type pageModels:DsoScreenPageModel}}, x:DataType=pageModels:DsoScreenPageModel}">
+                <VerticalStackLayout Spacing="14" BindableLayout.ItemsSource="{Binding Groups}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:DsoGroup">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="{Binding Heading}" Style="{StaticResource PmcroEyebrow}" />
+                                <VerticalStackLayout Spacing="8"
+                                                     BindableLayout.ItemsSource="{Binding Items}"
+                                                     BindableLayout.ItemTemplate="{StaticResource DsoCard}" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <Label Text="{Binding EmptyNote}" Style="{StaticResource PmcroCaption}"
+                       Margin="0,10,0,0"
+                       IsVisible="{Binding EmptyNote, Converter={StaticResource PmcroIsNotEmptyConverter}}" />
+            </VerticalStackLayout>
+        </DataTemplate>
+
+        <!-- ================= SHAPE: REFERENCE ================= -->
+        <DataTemplate x:Key="ShapeReference" x:DataType="models:Dso">
+            <VerticalStackLayout Spacing="14">
+                <Border Style="{StaticResource PmcroInset}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="DOCUMENT" Style="{StaticResource PmcroEyebrow}" />
+                        <Label Text="{Binding Path}" Style="{StaticResource PmcroMono}"
+                               TextColor="{StaticResource PmcroTextPrimary}" LineBreakMode="CharacterWrap" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="Knowledge the agent loads only when the task calls for it."
+                       Style="{StaticResource PmcroCaption}" />
+
+                <VerticalStackLayout Spacing="10"
+                                     x:DataType="pageModels:DsoScreenPageModel"
+                                     BindingContext="{Binding Source={RelativeSource AncestorType={x:Type pageModels:DsoScreenPageModel}}, x:DataType=pageModels:DsoScreenPageModel}"
+                                     IsVisible="{Binding UsedBy.Count, Converter={StaticResource PmcroIsNotZeroConverter}}">
+                    <Label Text="USED BY" Style="{StaticResource PmcroEyebrow}" Margin="0,8,0,0" />
+                    <VerticalStackLayout Spacing="8"
+                                         BindableLayout.ItemsSource="{Binding UsedBy}"
+                                         BindableLayout.ItemTemplate="{StaticResource DsoCard}" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </DataTemplate>
+
+        <!-- ================= SHAPE: AGENT ================= -->
+        <DataTemplate x:Key="ShapeAgent" x:DataType="models:Dso">
+            <VerticalStackLayout Spacing="14">
+                <Border Style="{StaticResource PmcroCard}">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="OBJECTIVE" Style="{StaticResource PmcroEyebrow}" />
+                        <Label Text="{Binding Summary}" Style="{StaticResource PmcroBody}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <Border Grid.Column="0" Style="{StaticResource PmcroCard}" Padding="14">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="TRAIL" Style="{StaticResource PmcroEyebrow}" />
+                            <Label Text="Follow on Trails" Style="{StaticResource PmcroBodyStrong}" />
+                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type pageModels:DsoScreenPageModel}}, Path=OpenTrailCommand, x:DataType=pageModels:DsoScreenPageModel}" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <Border Grid.Column="1" Style="{StaticResource PmcroCard}" Padding="14">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="RUN" Style="{StaticResource PmcroEyebrow}" />
+                            <Label Text="Seed a cycle" Style="{StaticResource PmcroBodyStrong}" />
+                        </VerticalStackLayout>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type pageModels:DsoScreenPageModel}}, Path=OpenRunnerCommand, x:DataType=pageModels:DsoScreenPageModel}" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </Grid>
+
+                <VerticalStackLayout Spacing="10"
+                                     x:DataType="pageModels:DsoScreenPageModel"
+                                     BindingContext="{Binding Source={RelativeSource AncestorType={x:Type pageModels:DsoScreenPageModel}}, x:DataType=pageModels:DsoScreenPageModel}">
+                    <Label Text="CAPABILITIES" Style="{StaticResource PmcroEyebrow}" Margin="0,8,0,0" />
+                    <VerticalStackLayout Spacing="14" BindableLayout.ItemsSource="{Binding Groups}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="models:DsoGroup">
+                                <VerticalStackLayout Spacing="8"
+                                                     BindableLayout.ItemsSource="{Binding Items}"
+                                                     BindableLayout.ItemTemplate="{StaticResource DsoCard}" />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </DataTemplate>
+
+        <!-- ================= SHAPE: SPLASH ================= -->
+        <DataTemplate x:Key="ShapeSplash" x:DataType="models:Dso">
+            <VerticalStackLayout Spacing="16" Padding="0,40" HorizontalOptions="Center">
+                <Border WidthRequest="88" HeightRequest="88" StrokeThickness="0"
+                        StrokeShape="RoundRectangle 22" HorizontalOptions="Center"
+                        BackgroundColor="{Binding Accent}">
+                    <Label Text="{Binding Glyph}" TextColor="{StaticResource PmcroOnPrimary}"
+                           FontAttributes="Bold" FontSize="32"
+                           HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+                <Label Text="{Binding Name}" Style="{StaticResource PmcroDisplay}"
+                       HorizontalTextAlignment="Center" />
+                <Label Text="{Binding Summary}" Style="{StaticResource PmcroBody}"
+                       HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+        </DataTemplate>
+
+        <!-- ================= SHAPE: SETTINGS ================= -->
+        <DataTemplate x:Key="ShapeSettings" x:DataType="models:Dso">
+            <VerticalStackLayout Spacing="10"
+                                 x:DataType="pageModels:DsoScreenPageModel"
+                                 BindingContext="{Binding Source={RelativeSource AncestorType={x:Type pageModels:DsoScreenPageModel}}, x:DataType=pageModels:DsoScreenPageModel}">
+                <Label Text="CONFIGURATION" Style="{StaticResource PmcroEyebrow}" />
+                <VerticalStackLayout Spacing="14" BindableLayout.ItemsSource="{Binding Groups}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:DsoGroup">
+                            <VerticalStackLayout Spacing="8"
+                                                 BindableLayout.ItemsSource="{Binding Items}"
+                                                 BindableLayout.ItemTemplate="{StaticResource DsoCard}" />
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </DataTemplate>
+
+        <!-- ================= SHAPE: DISCOVERY ================= -->
+        <DataTemplate x:Key="ShapeDiscovery" x:DataType="models:Dso">
+            <VerticalStackLayout Spacing="14"
+                                 x:DataType="pageModels:DsoScreenPageModel"
+                                 BindingContext="{Binding Source={RelativeSource AncestorType={x:Type pageModels:DsoScreenPageModel}}, x:DataType=pageModels:DsoScreenPageModel}">
+                <Border Style="{StaticResource PmcroField}">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                        <Label Grid.Column="0" Text="{x:Static f:FluentUI.search_24_regular}"
+                               FontFamily="{x:Static f:FluentUI.FontFamily}"
+                               TextColor="{StaticResource PmcroTextMuted}" FontSize="18"
+                               VerticalOptions="Center" />
+                        <Entry Grid.Column="1" Style="{StaticResource PmcroEntry}"
+                               Placeholder="Filter objects..." Text="{Binding Filter}" />
+                    </Grid>
+                </Border>
+
+                <VerticalStackLayout Spacing="14" BindableLayout.ItemsSource="{Binding Groups}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:DsoGroup">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="{Binding Heading}" Style="{StaticResource PmcroEyebrow}" />
+                                <VerticalStackLayout Spacing="8"
+                                                     BindableLayout.ItemsSource="{Binding Items}"
+                                                     BindableLayout.ItemTemplate="{StaticResource DsoCard}" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </DataTemplate>
+
+        <pmcro:ScreenTypeSelector x:Key="ScreenShapes"
+                                  Splash="{StaticResource ShapeSplash}"
+                                  Catalog="{StaticResource ShapeCatalog}"
+                                  Reference="{StaticResource ShapeReference}"
+                                  Agent="{StaticResource ShapeAgent}"
+                                  Settings="{StaticResource ShapeSettings}"
+                                  Discovery="{StaticResource ShapeDiscovery}" />
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,16,20,32" Spacing="16">
+
+            <!-- Identity is the same for every shape; only the body below varies. -->
+            <VerticalStackLayout Spacing="6">
+                <HorizontalStackLayout Spacing="8">
+                    <Border Style="{StaticResource PmcroTag}">
+                        <Label Text="{Binding Kind}" Style="{StaticResource PmcroMono}"
+                               FontSize="{StaticResource PmcroFontMicro}" />
+                    </Border>
+                    <Border Style="{StaticResource PmcroTag}"
+                            IsVisible="{Binding ScreenLabel, Converter={StaticResource PmcroIsNotEmptyConverter}}">
+                        <Label Text="{Binding ScreenLabel}" Style="{StaticResource PmcroMono}"
+                               FontSize="{StaticResource PmcroFontMicro}"
+                               TextColor="{StaticResource PmcroPrimary}" />
+                    </Border>
+                </HorizontalStackLayout>
+
+                <Label Text="{Binding Title}" Style="{StaticResource PmcroDisplay}" />
+                <Label Text="{Binding Summary}" Style="{StaticResource PmcroBody}"
+                       IsVisible="{Binding Summary, Converter={StaticResource PmcroIsNotEmptyConverter}}" />
+                <Label Text="{Binding Path}" Style="{StaticResource PmcroMono}"
+                       IsVisible="{Binding Path, Converter={StaticResource PmcroIsNotEmptyConverter}}" />
+            </VerticalStackLayout>
+
+            <!-- The object chooses its own body. One page, six shapes. -->
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding Surface}"
+                                 BindableLayout.ItemTemplateSelector="{StaticResource ScreenShapes}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

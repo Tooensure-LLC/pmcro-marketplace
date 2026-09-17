@@ -1,0 +1,15 @@
+{
+  "name": "pmcro-dotnet",
+  "version": "1.0.0",
+  "description": "PMCR-O extensions for current .NET and .NET MAUI engineering skills.",
+  "skills": [
+    "pmcro-dotnet",
+    "pmcro-dotnet-current-state",
+    "pmcro-dotnet-project-analysis",
+    "pmcro-maui-theming",
+    "pmcro-maui-shell-navigation",
+    "pmcro-maui-data-binding",
+    "pmcro-maui-dependency-injection",
+    "pmcro-maui-safe-area"
+  ]
+}

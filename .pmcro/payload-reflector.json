@@ -1,0 +1,1 @@
+{"Intent":"verify end to end wiring","CheckerVerdict":"pass","CheckerEvidence":"Integration test executed, all five controller endpoints reachable, HTTP 200 with real model output."}

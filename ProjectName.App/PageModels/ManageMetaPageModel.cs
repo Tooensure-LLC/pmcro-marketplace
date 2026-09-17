@@ -106,6 +106,7 @@ public partial class ManageMetaPageModel : ObservableObject
 		Preferences.Default.Remove("is_seeded");
         await _seedDataService.LoadSeedDataAsync();
         Preferences.Default.Set("is_seeded", true);
-        await Shell.Current.GoToAsync("//main");
+        // "//main" was the pre-tab-bar route and no longer resolves.
+        await Shell.Current.GoToAsync("//home");
 	}
 }

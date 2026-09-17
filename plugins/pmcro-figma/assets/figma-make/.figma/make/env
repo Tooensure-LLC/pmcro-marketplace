@@ -1,0 +1,4 @@
+# Adapt these values to the target repository.
+PORT=3000
+FIGMA_MAKE_URL=http://localhost:3000
+# BOOTSTRAP_TIMEOUT=60000

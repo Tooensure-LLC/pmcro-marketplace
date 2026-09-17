@@ -1,4 +1,6 @@
 {
   "name": "pmcro",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "description": "PMCR-O loop: Orchestrator, Planner, Maker, Checker, Reflector, dependency-resolver + trails.",
+  "skills": ["orchestrator", "planner", "maker", "checker", "reflector", "dependency-resolver", "pmcro-loop"]
 }

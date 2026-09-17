@@ -6,6 +6,7 @@
              xmlns:models="clr-namespace:ProjectName.App.Models"
              x:DataType="pageModel:TaskDetailPageModel"
              x:Class="ProjectName.App.Pages.TaskDetailPage"
+             Style="{StaticResource PmcroDetailPage}"
              Title="Task">
 
     <ContentPage.ToolbarItems>

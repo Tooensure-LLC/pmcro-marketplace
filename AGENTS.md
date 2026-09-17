@@ -18,3 +18,29 @@ PMCR-O roles here are C# services guided by those skill files, not skill package
 directly. `extern/pmcro-skills/` is governance/reference content (the laws' original markdown form,
 MAF-alignment notes, declarative templates) folded in from a sibling repo — read it for context and
 conventions, not as the live prompt source.
+
+## Repository layout (verify against live disk before trusting this — it drifts)
+
+- `src/api/` — the unified backend. Every REST/gRPC service that the Aspire AppHost provisions
+  lives here as a sibling project: `ProjectName.CheckerGrpc`, `ProjectName.MakerGrpc`,
+  `ProjectName.ReflectorGrpc`, `ProjectName.OrchestratorApi` (REST/Minimal API surface),
+  `ProjectName.OrchestratorGrpc`, `ProjectName.PlannerGrpc`. gRPC-to-gRPC (agent/service) traffic
+  stays inside these projects' Protos; REST is Minimal APIs in `OrchestratorApi` only — do not mix
+  the two transports inside one project.
+- `src/PMCR.Agents/{Checker,Maker,Planner,Reflector}/` — the MAF agent *logic* (AIAgent/workflow
+  code), referenced by the matching `*Grpc`/`*Api` host project in `src/api/`. This is a separate
+  layer from the gRPC service hosts and was NOT folded into `src/api/` — only the host/service
+  projects were consolidated there.
+- `src/ProjectName.AppHost/` — the real, solution-wired Aspire AppHost (`pmcro.slnx` and
+  `AppHost.csproj`'s `ProjectReference`s are the source of truth for what it provisions). It
+  references every project in `src/api/`, Ollama, and Redis/Postgres.
+- `src/ProjectName.ServiceDefaults/` — the real, solution-wired shared Aspire defaults project,
+  referenced by every `src/api/` project.
+- `archive/` — stale/superseded, not part of the build: a duplicate root-level `AppHost/` and
+  `ServiceDefaults/` (orphaned copies never wired into `pmcro.slnx`), and
+  `PMCR.OrchestratorService` (earlier MAF orchestrator logic, superseded by
+  `ProjectName.OrchestratorApi` + `ProjectName.OrchestratorGrpc`). Do not resurrect these by editing
+  in place; if real logic is needed from them, port it deliberately into the live `src/api/`
+  project.
+- No cloud AI endpoints anywhere in `src/api/` — Ollama via `Microsoft.Extensions.AI` /
+  `OllamaSharp` only. `Microsoft.Agents.AI*` (MAF) packages, not Semantic Kernel or AutoGen.

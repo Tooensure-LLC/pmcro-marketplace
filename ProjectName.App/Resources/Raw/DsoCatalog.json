@@ -1,0 +1,806 @@
+{
+    "generated":  "2026-09-17T05:49:47.7235941-05:00",
+    "source":  "T:\\pmcro-marketplace",
+    "roots":  [
+                  "plugins-pmcro",
+                  "plugins-pmcro-code",
+                  "plugins-pmcro-csuite",
+                  "plugins-pmcro-dotnet",
+                  "plugins-pmcro-figma",
+                  "plugins-pmcro-loop",
+                  "pmcro-governance"
+              ],
+    "dsos":  [
+                 {
+                     "id":  "plugins-pmcro",
+                     "kind":  "Plugin",
+                     "name":  "pmcro",
+                     "summary":  "PMCR-O loop: Orchestrator, Planner, Maker, Checker, Reflector, dependency-resolver + trails.",
+                     "path":  "plugins/pmcro",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+                                       "plugins-pmcro-skills-checker",
+                                       "plugins-pmcro-skills-dependency-resolver",
+                                       "plugins-pmcro-skills-maker",
+                                       "plugins-pmcro-skills-orchestrator",
+                                       "plugins-pmcro-skills-planner",
+                                       "plugins-pmcro-skills-pmcro-loop",
+                                       "plugins-pmcro-skills-reflector",
+                                       "plugins-pmcro-agents-checker-agent-md",
+                                       "plugins-pmcro-agents-maker-agent-md",
+                                       "plugins-pmcro-agents-orchestrator-agent-md",
+                                       "plugins-pmcro-agents-planner-agent-md",
+                                       "plugins-pmcro-agents-reflector-agent-md",
+                                       "plugins-pmcro-hooks-guard-log-before-act-js",
+                                       "plugins-pmcro-hooks-hooks-json"
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-skills-checker",
+                     "kind":  "Skill",
+                     "name":  "checker",
+                     "summary":  "\"PMCR-O checker — part of pmcro plugin. USE FOR: checker phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro/skills/checker",
+                     "landing":  "plugins/pmcro/skills/checker/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-skills-dependency-resolver",
+                     "kind":  "Skill",
+                     "name":  "dependency-resolver",
+                     "summary":  "\"PMCR-O dependency-resolver — part of pmcro plugin. USE FOR: dependency-resolver phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro/skills/dependency-resolver",
+                     "landing":  "plugins/pmcro/skills/dependency-resolver/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-skills-maker",
+                     "kind":  "Skill",
+                     "name":  "maker",
+                     "summary":  "\"PMCR-O maker — part of pmcro plugin. USE FOR: maker phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro/skills/maker",
+                     "landing":  "plugins/pmcro/skills/maker/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-skills-orchestrator",
+                     "kind":  "Skill",
+                     "name":  "orchestrator",
+                     "summary":  "\"PMCR-O orchestrator — part of pmcro plugin. USE FOR: orchestrator phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro/skills/orchestrator",
+                     "landing":  "plugins/pmcro/skills/orchestrator/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-skills-planner",
+                     "kind":  "Skill",
+                     "name":  "planner",
+                     "summary":  "\"PMCR-O planner — part of pmcro plugin. USE FOR: planner phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro/skills/planner",
+                     "landing":  "plugins/pmcro/skills/planner/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-skills-pmcro-loop",
+                     "kind":  "Skill",
+                     "name":  "pmcro-loop",
+                     "summary":  "Run one PMCR-O cycle — open trail, plan, make, check, reflect, seal.",
+                     "path":  "plugins/pmcro/skills/pmcro-loop",
+                     "landing":  "plugins/pmcro/skills/pmcro-loop/SKILL.md",
+                     "screen":  "agent",
+                     "resources":  [
+                                       "plugins-pmcro-skills-pmcro-loop-references-laws-md"
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-skills-pmcro-loop-references-laws-md",
+                     "kind":  "Reference",
+                     "name":  "laws",
+                     "summary":  "",
+                     "path":  "plugins/pmcro/skills/pmcro-loop/references/laws.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-skills-reflector",
+                     "kind":  "Skill",
+                     "name":  "reflector",
+                     "summary":  "\"PMCR-O reflector — part of pmcro plugin. USE FOR: reflector phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro/skills/reflector",
+                     "landing":  "plugins/pmcro/skills/reflector/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-agents-checker-agent-md",
+                     "kind":  "Agent",
+                     "name":  "checker.agent",
+                     "summary":  "",
+                     "path":  "plugins/pmcro/agents/checker.agent.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-agents-maker-agent-md",
+                     "kind":  "Agent",
+                     "name":  "maker.agent",
+                     "summary":  "",
+                     "path":  "plugins/pmcro/agents/maker.agent.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-agents-orchestrator-agent-md",
+                     "kind":  "Agent",
+                     "name":  "orchestrator.agent",
+                     "summary":  "",
+                     "path":  "plugins/pmcro/agents/orchestrator.agent.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-agents-planner-agent-md",
+                     "kind":  "Agent",
+                     "name":  "planner.agent",
+                     "summary":  "",
+                     "path":  "plugins/pmcro/agents/planner.agent.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-agents-reflector-agent-md",
+                     "kind":  "Agent",
+                     "name":  "reflector.agent",
+                     "summary":  "",
+                     "path":  "plugins/pmcro/agents/reflector.agent.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-hooks-guard-log-before-act-js",
+                     "kind":  "Tool",
+                     "name":  "guard-log-before-act",
+                     "summary":  "",
+                     "path":  "plugins/pmcro/hooks/guard-log-before-act.js",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-hooks-hooks-json",
+                     "kind":  "Tool",
+                     "name":  "hooks",
+                     "summary":  "",
+                     "path":  "plugins/pmcro/hooks/hooks.json",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-code",
+                     "kind":  "Plugin",
+                     "name":  "pmcro-code",
+                     "summary":  null,
+                     "path":  "plugins/pmcro-code",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+                                       "plugins-pmcro-code-skills-catalog-check",
+                                       "plugins-pmcro-code-skills-filesystem",
+                                       "plugins-pmcro-code-skills-git",
+                                       "plugins-pmcro-code-skills-meta-runtime",
+                                       "plugins-pmcro-code-skills-plugin-packager",
+                                       "plugins-pmcro-code-skills-skill-creator"
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-code-skills-catalog-check",
+                     "kind":  "Skill",
+                     "name":  "catalog-check",
+                     "summary":  "\"PMCR-O catalog-check — part of pmcro-code plugin. USE FOR: catalog-check phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-code/skills/catalog-check",
+                     "landing":  "plugins/pmcro-code/skills/catalog-check/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-code-skills-filesystem",
+                     "kind":  "Skill",
+                     "name":  "filesystem",
+                     "summary":  "\"PMCR-O filesystem — part of pmcro-code plugin. USE FOR: filesystem phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-code/skills/filesystem",
+                     "landing":  "plugins/pmcro-code/skills/filesystem/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-code-skills-git",
+                     "kind":  "Skill",
+                     "name":  "git",
+                     "summary":  "\"PMCR-O git — part of pmcro-code plugin. USE FOR: git phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-code/skills/git",
+                     "landing":  "plugins/pmcro-code/skills/git/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-code-skills-meta-runtime",
+                     "kind":  "Skill",
+                     "name":  "meta-runtime",
+                     "summary":  "\"PMCR-O meta-runtime — part of pmcro-code plugin. USE FOR: meta-runtime phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-code/skills/meta-runtime",
+                     "landing":  "plugins/pmcro-code/skills/meta-runtime/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-code-skills-plugin-packager",
+                     "kind":  "Skill",
+                     "name":  "plugin-packager",
+                     "summary":  "\"PMCR-O plugin-packager — part of pmcro-code plugin. USE FOR: plugin-packager phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-code/skills/plugin-packager",
+                     "landing":  "plugins/pmcro-code/skills/plugin-packager/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-code-skills-skill-creator",
+                     "kind":  "Skill",
+                     "name":  "skill-creator",
+                     "summary":  "\"PMCR-O skill-creator — part of pmcro-code plugin. USE FOR: skill-creator phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-code/skills/skill-creator",
+                     "landing":  "plugins/pmcro-code/skills/skill-creator/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-csuite",
+                     "kind":  "Plugin",
+                     "name":  "pmcro-csuite",
+                     "summary":  null,
+                     "path":  "plugins/pmcro-csuite",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+                                       "plugins-pmcro-csuite-skills-ceo",
+                                       "plugins-pmcro-csuite-skills-cfo",
+                                       "plugins-pmcro-csuite-skills-chief-of-staff",
+                                       "plugins-pmcro-csuite-skills-chro",
+                                       "plugins-pmcro-csuite-skills-clo",
+                                       "plugins-pmcro-csuite-skills-cmo",
+                                       "plugins-pmcro-csuite-skills-coo",
+                                       "plugins-pmcro-csuite-skills-cro",
+                                       "plugins-pmcro-csuite-skills-cto",
+                                       "plugins-pmcro-csuite-skills-domain-specialist"
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-csuite-skills-ceo",
+                     "kind":  "Skill",
+                     "name":  "ceo",
+                     "summary":  "\"PMCR-O ceo — part of pmcro-csuite plugin. USE FOR: ceo phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-csuite/skills/ceo",
+                     "landing":  "plugins/pmcro-csuite/skills/ceo/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-csuite-skills-cfo",
+                     "kind":  "Skill",
+                     "name":  "cfo",
+                     "summary":  "\"PMCR-O cfo — part of pmcro-csuite plugin. USE FOR: cfo phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-csuite/skills/cfo",
+                     "landing":  "plugins/pmcro-csuite/skills/cfo/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-csuite-skills-chief-of-staff",
+                     "kind":  "Skill",
+                     "name":  "chief-of-staff",
+                     "summary":  "\"PMCR-O chief-of-staff — part of pmcro-csuite plugin. USE FOR: chief-of-staff phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-csuite/skills/chief-of-staff",
+                     "landing":  "plugins/pmcro-csuite/skills/chief-of-staff/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-csuite-skills-chro",
+                     "kind":  "Skill",
+                     "name":  "chro",
+                     "summary":  "\"PMCR-O chro — part of pmcro-csuite plugin. USE FOR: chro phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-csuite/skills/chro",
+                     "landing":  "plugins/pmcro-csuite/skills/chro/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-csuite-skills-clo",
+                     "kind":  "Skill",
+                     "name":  "clo",
+                     "summary":  "\"PMCR-O clo — part of pmcro-csuite plugin. USE FOR: clo phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-csuite/skills/clo",
+                     "landing":  "plugins/pmcro-csuite/skills/clo/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-csuite-skills-cmo",
+                     "kind":  "Skill",
+                     "name":  "cmo",
+                     "summary":  "\"PMCR-O cmo — part of pmcro-csuite plugin. USE FOR: cmo phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-csuite/skills/cmo",
+                     "landing":  "plugins/pmcro-csuite/skills/cmo/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-csuite-skills-coo",
+                     "kind":  "Skill",
+                     "name":  "coo",
+                     "summary":  "\"PMCR-O coo — part of pmcro-csuite plugin. USE FOR: coo phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-csuite/skills/coo",
+                     "landing":  "plugins/pmcro-csuite/skills/coo/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-csuite-skills-cro",
+                     "kind":  "Skill",
+                     "name":  "cro",
+                     "summary":  "\"PMCR-O cro — part of pmcro-csuite plugin. USE FOR: cro phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-csuite/skills/cro",
+                     "landing":  "plugins/pmcro-csuite/skills/cro/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-csuite-skills-cto",
+                     "kind":  "Skill",
+                     "name":  "cto",
+                     "summary":  "\"PMCR-O cto — part of pmcro-csuite plugin. USE FOR: cto phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-csuite/skills/cto",
+                     "landing":  "plugins/pmcro-csuite/skills/cto/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-csuite-skills-domain-specialist",
+                     "kind":  "Skill",
+                     "name":  "domain-specialist",
+                     "summary":  "\"PMCR-O domain-specialist — part of pmcro-csuite plugin. USE FOR: domain-specialist phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-csuite/skills/domain-specialist",
+                     "landing":  "plugins/pmcro-csuite/skills/domain-specialist/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-dotnet",
+                     "kind":  "Plugin",
+                     "name":  "pmcro-dotnet",
+                     "summary":  "PMCR-O extensions for current .NET and .NET MAUI engineering skills.",
+                     "path":  "plugins/pmcro-dotnet",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+                                       "plugins-pmcro-dotnet-skills-pmcro-dotnet",
+                                       "plugins-pmcro-dotnet-skills-pmcro-dotnet-current-state",
+                                       "plugins-pmcro-dotnet-skills-pmcro-dotnet-project-analysis",
+                                       "plugins-pmcro-dotnet-skills-pmcro-maui-data-binding",
+                                       "plugins-pmcro-dotnet-skills-pmcro-maui-dependency-injection",
+                                       "plugins-pmcro-dotnet-skills-pmcro-maui-safe-area",
+                                       "plugins-pmcro-dotnet-skills-pmcro-maui-shell-navigation",
+                                       "plugins-pmcro-dotnet-skills-pmcro-maui-theming"
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-dotnet-skills-pmcro-dotnet",
+                     "kind":  "Skill",
+                     "name":  "pmcro-dotnet",
+                     "summary":  "Govern .NET work with PMCR-O validation, project inspection, evidence, and verification.",
+                     "path":  "plugins/pmcro-dotnet/skills/pmcro-dotnet",
+                     "landing":  "plugins/pmcro-dotnet/skills/pmcro-dotnet/SKILL.md",
+                     "screen":  "catalog",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-dotnet-skills-pmcro-dotnet-current-state",
+                     "kind":  "Skill",
+                     "name":  "pmcro-dotnet-current-state",
+                     "summary":  "Validate current .NET and MAUI APIs, packages, tooling, and guidance before version-sensitive decisions.",
+                     "path":  "plugins/pmcro-dotnet/skills/pmcro-dotnet-current-state",
+                     "landing":  "plugins/pmcro-dotnet/skills/pmcro-dotnet-current-state/SKILL.md",
+                     "screen":  "reference",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-dotnet-skills-pmcro-dotnet-project-analysis",
+                     "kind":  "Skill",
+                     "name":  "pmcro-dotnet-project-analysis",
+                     "summary":  "Analyze a .NET repository before changing architecture, dependencies, or implementation.",
+                     "path":  "plugins/pmcro-dotnet/skills/pmcro-dotnet-project-analysis",
+                     "landing":  "plugins/pmcro-dotnet/skills/pmcro-dotnet-project-analysis/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-dotnet-skills-pmcro-maui-data-binding",
+                     "kind":  "Skill",
+                     "name":  "pmcro-maui-data-binding",
+                     "summary":  "Build compiled, source-generated .NET MAUI bindings that survive trimming and AOT.",
+                     "path":  "plugins/pmcro-dotnet/skills/pmcro-maui-data-binding",
+                     "landing":  "plugins/pmcro-dotnet/skills/pmcro-maui-data-binding/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-dotnet-skills-pmcro-maui-dependency-injection",
+                     "kind":  "Skill",
+                     "name":  "pmcro-maui-dependency-injection",
+                     "summary":  "Register .NET MAUI pages, page models and services with lifetimes that match how the shell actually resolves them.",
+                     "path":  "plugins/pmcro-dotnet/skills/pmcro-maui-dependency-injection",
+                     "landing":  "plugins/pmcro-dotnet/skills/pmcro-maui-dependency-injection/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-dotnet-skills-pmcro-maui-safe-area",
+                     "kind":  "Skill",
+                     "name":  "pmcro-maui-safe-area",
+                     "summary":  "Keep .NET MAUI layouts clear of notches, home indicators, tab bars and keyboards across platforms.",
+                     "path":  "plugins/pmcro-dotnet/skills/pmcro-maui-safe-area",
+                     "landing":  "plugins/pmcro-dotnet/skills/pmcro-maui-safe-area/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-dotnet-skills-pmcro-maui-shell-navigation",
+                     "kind":  "Skill",
+                     "name":  "pmcro-maui-shell-navigation",
+                     "summary":  "Design and change .NET MAUI Shell navigation - tabs, flyouts, routes and parameters - without orphaning existing pages.",
+                     "path":  "plugins/pmcro-dotnet/skills/pmcro-maui-shell-navigation",
+                     "landing":  "plugins/pmcro-dotnet/skills/pmcro-maui-shell-navigation/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-dotnet-skills-pmcro-maui-theming",
+                     "kind":  "Skill",
+                     "name":  "pmcro-maui-theming",
+                     "summary":  "Build and validate maintainable .NET MAUI themes using project-native resources and current platform behavior.",
+                     "path":  "plugins/pmcro-dotnet/skills/pmcro-maui-theming",
+                     "landing":  "plugins/pmcro-dotnet/skills/pmcro-maui-theming/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-figma",
+                     "kind":  "Plugin",
+                     "name":  "pmcro-figma",
+                     "summary":  "PMCR-O governed Figma Make repository wiring and UI/UX workflow.",
+                     "path":  "plugins/pmcro-figma",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+                                       "plugins-pmcro-figma-skills-figma-make",
+                                       "plugins-pmcro-figma-references-figma-make-repository-md",
+                                       "plugins-pmcro-figma-assets-figma-make-figma-make-dev",
+                                       "plugins-pmcro-figma-assets-figma-make-figma-make-env",
+                                       "plugins-pmcro-figma-assets-figma-make-figma-make-install",
+                                       "plugins-pmcro-figma-assets-figma-make-figma-make-setup",
+                                       "plugins-pmcro-figma-assets-figma-make-figma-make-verify"
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-figma-skills-figma-make",
+                     "kind":  "Skill",
+                     "name":  "figma-make",
+                     "summary":  "Govern Figma Make work against a real codebase: configure .figma/make, preserve Git boundaries, connect UI intent to PMCR-O execution, and verify the result with evidence.",
+                     "path":  "plugins/pmcro-figma/skills/figma-make",
+                     "landing":  "plugins/pmcro-figma/skills/figma-make/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-figma-references-figma-make-repository-md",
+                     "kind":  "Reference",
+                     "name":  "figma-make-repository",
+                     "summary":  "",
+                     "path":  "plugins/pmcro-figma/references/figma-make-repository.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-figma-assets-figma-make-figma-make-dev",
+                     "kind":  "Asset",
+                     "name":  "dev",
+                     "summary":  "",
+                     "path":  "plugins/pmcro-figma/assets/figma-make/.figma/make/dev",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-figma-assets-figma-make-figma-make-env",
+                     "kind":  "Asset",
+                     "name":  "env",
+                     "summary":  "",
+                     "path":  "plugins/pmcro-figma/assets/figma-make/.figma/make/env",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-figma-assets-figma-make-figma-make-install",
+                     "kind":  "Asset",
+                     "name":  "install",
+                     "summary":  "",
+                     "path":  "plugins/pmcro-figma/assets/figma-make/.figma/make/install",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-figma-assets-figma-make-figma-make-setup",
+                     "kind":  "Asset",
+                     "name":  "setup",
+                     "summary":  "",
+                     "path":  "plugins/pmcro-figma/assets/figma-make/.figma/make/setup",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-figma-assets-figma-make-figma-make-verify",
+                     "kind":  "Asset",
+                     "name":  "verify",
+                     "summary":  "",
+                     "path":  "plugins/pmcro-figma/assets/figma-make/.figma/make/verify",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-loop",
+                     "kind":  "Plugin",
+                     "name":  "pmcro-loop",
+                     "summary":  null,
+                     "path":  "plugins/pmcro-loop",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+                                       "plugins-pmcro-loop-skills-pmcro-loop"
+                                   ]
+                 },
+                 {
+                     "id":  "plugins-pmcro-loop-skills-pmcro-loop",
+                     "kind":  "Skill",
+                     "name":  "pmcro-loop",
+                     "summary":  "\"PMCR-O pmcro-loop — part of pmcro-loop plugin. USE FOR: pmcro-loop phase. DO NOT USE FOR: deciding O-Mode or dispatch.\"",
+                     "path":  "plugins/pmcro-loop/skills/pmcro-loop",
+                     "landing":  "plugins/pmcro-loop/skills/pmcro-loop/SKILL.md",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "pmcro-governance",
+                     "kind":  "Plugin",
+                     "name":  "pmcro governance",
+                     "summary":  "Laws, earned constraints and conventions the Checker verifies against.",
+                     "path":  "docs/governance",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+                                       "docs-governance-bottom-up-cycle-rebuild-md",
+                                       "docs-governance-earned-constraints-md",
+                                       "docs-governance-executor-tiers-md",
+                                       "docs-governance-interception-points-md",
+                                       "docs-governance-laws-md",
+                                       "docs-governance-orchestration-md",
+                                       "docs-governance-parking-lot-md",
+                                       "docs-governance-reference-convention-md"
+                                   ]
+                 },
+                 {
+                     "id":  "docs-governance-bottom-up-cycle-rebuild-md",
+                     "kind":  "Reference",
+                     "name":  "bottom-up-cycle-rebuild",
+                     "summary":  "",
+                     "path":  "docs/governance/bottom-up-cycle-rebuild.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "docs-governance-earned-constraints-md",
+                     "kind":  "Reference",
+                     "name":  "earned-constraints",
+                     "summary":  "",
+                     "path":  "docs/governance/earned-constraints.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "docs-governance-executor-tiers-md",
+                     "kind":  "Reference",
+                     "name":  "executor-tiers",
+                     "summary":  "",
+                     "path":  "docs/governance/executor-tiers.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "docs-governance-interception-points-md",
+                     "kind":  "Reference",
+                     "name":  "interception-points",
+                     "summary":  "",
+                     "path":  "docs/governance/interception-points.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "docs-governance-laws-md",
+                     "kind":  "Reference",
+                     "name":  "laws",
+                     "summary":  "",
+                     "path":  "docs/governance/laws.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "docs-governance-orchestration-md",
+                     "kind":  "Reference",
+                     "name":  "orchestration",
+                     "summary":  "",
+                     "path":  "docs/governance/orchestration.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "docs-governance-parking-lot-md",
+                     "kind":  "Reference",
+                     "name":  "parking-lot",
+                     "summary":  "",
+                     "path":  "docs/governance/parking-lot.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 },
+                 {
+                     "id":  "docs-governance-reference-convention-md",
+                     "kind":  "Reference",
+                     "name":  "reference-convention",
+                     "summary":  "",
+                     "path":  "docs/governance/reference-convention.md",
+                     "landing":  "",
+                     "screen":  "",
+                     "resources":  [
+
+                                   ]
+                 }
+             ]
+}

@@ -1,0 +1,34 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.5.4">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net11.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AspireUseCliBundle>true</AspireUseCliBundle>
+		<UserSecretsId>d4f84162-b4f4-4e2e-a0df-b5bef46bd101</UserSecretsId>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Aspire.Hosting.PostgreSQL" />
+	  <PackageReference Include="CommunityToolkit.Aspire.Hosting.Ollama" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\api\ProjectName.CheckerGrpc\ProjectName.CheckerGrpc.csproj" />
+	  <ProjectReference Include="..\api\ProjectName.MakerGrpc\ProjectName.MakerGrpc.csproj" />
+	  <ProjectReference Include="..\api\ProjectName.ReflectorGrpc\ProjectName.ReflectorGrpc.csproj" />
+	  <ProjectReference Include="..\api\ProjectName.OrchestratorApi\ProjectName.OrchestratorApi.csproj" />
+	  <ProjectReference Include="..\api\ProjectName.OrchestratorGrpc\ProjectName.OrchestratorGrpc.csproj" />
+	  <ProjectReference Include="..\api\ProjectName.PlannerGrpc\ProjectName.PlannerGrpc.csproj" />
+
+	  <!-- ProjectName.Agents workers: trail-persisting MAF cycles, previously never
+	       started by Aspire and never given the Ollama connection their
+	       MafPhaseRunner constructor requires. -->
+	  <ProjectReference Include="..\ProjectName.Agents\Planner\ProjectName.Agents.Planner.csproj" />
+	  <ProjectReference Include="..\ProjectName.Agents\Maker\ProjectName.Agents.Maker.csproj" />
+	  <ProjectReference Include="..\ProjectName.Agents\Checker\ProjectName.Agents.Checker.csproj" />
+	  <ProjectReference Include="..\ProjectName.Agents\Reflector\ProjectName.Agents.Reflector.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,5 +1,7 @@
 namespace Domain.Common;
 
+public interface IAppendOnlyEntity;
+
 public abstract class BaseEntity
 {
     public Guid Id { get; set; } = Guid.NewGuid();

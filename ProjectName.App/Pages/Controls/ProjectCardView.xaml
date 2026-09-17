@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         xmlns:controls="clr-namespace:ProjectName.App.Pages.Controls"
         xmlns:models="clr-namespace:ProjectName.App.Models"
-        xmlns:fonts="clr-namespace:Fonts"
+        xmlns:fonts="clr-namespace:ProjectName.App.Resources.Fonts"
         xmlns:pageModels="clr-namespace:ProjectName.App.PageModels"
         xmlns:shimmer="clr-namespace:Syncfusion.Maui.Toolkit.Shimmer;assembly=Syncfusion.Maui.Toolkit"
         x:Class="ProjectName.App.Pages.Controls.ProjectCardView"

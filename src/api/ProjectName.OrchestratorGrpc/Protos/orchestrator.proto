@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// Distinct namespace to avoid collision with ProjectName.OrchestratorGrpc (the assembly)
+option csharp_namespace = "ProjectName.OrchestratorGrpc";
+
+package pmcro.v1;
+
+service Orchestrator {
+  rpc Run (Request) returns (Response);
+}
+
+message Request {
+  string messy_seed_intent   = 1;
+}
+
+message Response {
+  string true_seed_intent   = 1;
+}

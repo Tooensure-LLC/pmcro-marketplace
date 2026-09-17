@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProjectName.App.Pages.Pmcro.ActiveTrailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:f="clr-namespace:ProjectName.App.Resources.Fonts"
+    xmlns:models="clr-namespace:ProjectName.App.Models"
+    xmlns:pageModels="clr-namespace:ProjectName.App.PageModels"
+    x:DataType="pageModels:ActiveTrailPageModel"
+    Style="{StaticResource PmcroPage}"
+    Title="Active trail">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- ===== CHROME: wordmark, runtime badge, account ===== -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto" Padding="20,16,20,8" ColumnSpacing="12">
+            <HorizontalStackLayout Grid.Column="0" Spacing="6" VerticalOptions="Center">
+                <Label Text="pmcro" Style="{StaticResource PmcroTitle}" VerticalOptions="Center" />
+                <Label Text="-code" Style="{StaticResource PmcroTitle}"
+                       TextColor="{StaticResource PmcroAccent}"
+                       FontFamily="{StaticResource PmcroMonoFont}" VerticalOptions="Center" />
+                <Border Style="{StaticResource PmcroTag}">
+                    <Label Text="CLI" Style="{StaticResource PmcroMono}"
+                           FontSize="{StaticResource PmcroFontMicro}" CharacterSpacing="1" />
+                </Border>
+            </HorizontalStackLayout>
+
+            <!-- Reflects GET /health; grey when the orchestrator is unreachable. -->
+            <Border Grid.Column="1" Style="{StaticResource PmcroChip}" Padding="12,7" VerticalOptions="Center">
+                <HorizontalStackLayout Spacing="8">
+                    <Border Style="{StaticResource PmcroStatusDot}">
+                        <Border.Triggers>
+                            <DataTrigger TargetType="Border" Binding="{Binding IsOrchestratorUp}" Value="False">
+                                <Setter Property="BackgroundColor" Value="{StaticResource PmcroTextMuted}" />
+                            </DataTrigger>
+                        </Border.Triggers>
+                    </Border>
+                    <Label Text="{Binding RuntimeLabel}" Style="{StaticResource PmcroMono}"
+                           TextColor="{StaticResource PmcroAccent}" VerticalOptions="Center">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding IsOrchestratorUp}" Value="False">
+                                <Setter Property="TextColor" Value="{StaticResource PmcroTextMuted}" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </HorizontalStackLayout>
+            </Border>
+
+            <Border Grid.Column="2" Style="{StaticResource PmcroAvatar}"
+                    BackgroundColor="{StaticResource PmcroAccent}">
+                <Label Text="S" TextColor="{StaticResource PmcroOnAccent}"
+                       FontAttributes="Bold" FontSize="{StaticResource PmcroFontHeading}"
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+            </Border>
+        </Grid>
+
+        <!-- ===== BODY ===== -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20,8,20,24" Spacing="4">
+
+                <Label Text="Active trail" Style="{StaticResource PmcroDisplay}" />
+
+                <HorizontalStackLayout Spacing="8" Margin="0,2,0,0">
+                    <Label Text="{Binding TrailId}" Style="{StaticResource PmcroMono}"
+                           FontSize="{StaticResource PmcroFontBody}" />
+                    <Label Text="·" Style="{StaticResource PmcroMono}"
+                           FontSize="{StaticResource PmcroFontBody}" />
+                    <Label Text="{Binding TrailLabel}" Style="{StaticResource PmcroMono}"
+                           FontSize="{StaticResource PmcroFontBody}"
+                           LineBreakMode="TailTruncation" />
+                </HorizontalStackLayout>
+
+                <!-- ===== TRAIL TIMELINE ===== -->
+                <CollectionView ItemsSource="{Binding Phases}" SelectionMode="None" Margin="0,20,0,0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:TrailPhase">
+                            <Grid ColumnDefinitions="40,*" MinimumHeightRequest="76">
+
+                                <!-- Connector runs from this node's center to the next node -->
+                                <BoxView Grid.Column="0" WidthRequest="2" HorizontalOptions="Center"
+                                         VerticalOptions="Fill" Margin="0,13,0,0"
+                                         Color="{Binding ConnectorColor}"
+                                         IsVisible="{Binding HasNext}" />
+
+                                <Border Grid.Column="0" Style="{StaticResource PmcroTrailNode}"
+                                        VerticalOptions="Start"
+                                        BackgroundColor="{Binding NodeBackground}"
+                                        Stroke="{Binding NodeStroke}">
+                                    <Label Text="{x:Static f:FluentUI.checkmark_24_regular}"
+                                           FontFamily="{x:Static f:FluentUI.FontFamily}"
+                                           FontAttributes="Bold" FontSize="14"
+                                           TextColor="{StaticResource PmcroOnAccent}"
+                                           HorizontalOptions="Center" VerticalOptions="Center"
+                                           IsVisible="{Binding ShowCheck}" />
+                                </Border>
+
+                                <VerticalStackLayout Grid.Column="1" Spacing="2" Margin="12,0,0,0">
+                                    <Label Text="{Binding Name}" Style="{StaticResource PmcroTrailPhaseDone}"
+                                           TextColor="{Binding NameColor}" />
+                                    <Label Text="{Binding Artifact}" Style="{StaticResource PmcroMono}"
+                                           TextColor="{Binding ArtifactColor}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- ===== LOG ===== -->
+                <Label Text="LOG" Style="{StaticResource PmcroEyebrow}" Margin="0,24,0,10" />
+
+                <Border Style="{StaticResource PmcroInset}">
+                    <VerticalStackLayout Spacing="10" BindableLayout.ItemsSource="{Binding Log}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="models:TrailLogEntry">
+                                <Label LineBreakMode="WordWrap">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Role}" TextColor="{Binding RoleColor}"
+                                                  FontFamily="{StaticResource PmcroMonoFont}" FontAttributes="Bold" />
+                                            <Span Text="  " />
+                                            <Span Text="{Binding Verb}" TextColor="{StaticResource PmcroTextMuted}"
+                                                  FontFamily="{StaticResource PmcroMonoFont}" />
+                                            <Span Text="  " />
+                                            <Span Text="{Binding Evidence}" TextColor="{StaticResource PmcroTextPrimary}"
+                                                  FontFamily="{StaticResource PmcroMonoFont}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="No frames logged yet - the trail opens when the loop runs."
+                       Style="{StaticResource PmcroCaption}" Margin="0,10,0,0"
+                       IsVisible="{Binding Log.Count, Converter={StaticResource PmcroIsZeroConverter}}" />
+
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
+                                   Color="{StaticResource PmcroAccent}" Margin="0,16,0,0" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!--
+            The orchestrator has no approve or halt endpoint, so this bar does not
+            pretend to gate a phase: Halt stops this client following the run, and the
+            accent button follows / refreshes / opens the runner as the state allows.
+        -->
+        <VerticalStackLayout Grid.Row="2" Padding="20,12,20,18" Spacing="8"
+                             BackgroundColor="{StaticResource PmcroSurface}">
+            <Label Text="{Binding StatusNote}" Style="{StaticResource PmcroCaption}"
+                   IsVisible="{Binding StatusNote, Converter={StaticResource PmcroIsNotEmptyConverter}}" />
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Button Grid.Column="0" Text="Halt" Style="{StaticResource PmcroButtonGhost}"
+                        Command="{Binding HaltCommand}"
+                        IsEnabled="{Binding CanHalt}" />
+                <Button Grid.Column="1" Text="{Binding AdvanceLabel}"
+                        Style="{StaticResource PmcroButtonAccent}"
+                        Command="{Binding AdvanceCommand}"
+                        IsEnabled="{Binding CanAdvance}" />
+            </Grid>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
