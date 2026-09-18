@@ -1,0 +1,1 @@
+{"cycle_id": "git-governance-fix-20260917", "seed_intent": "Remediate Rule Zero violation: .pmcro/trails/, policies/, .vscode/ were untracked. Commit governance evidence separately from unrelated in-flight feature work.", "timestamp": "2026-09-17T00:20:00Z", "actor": "claude-sonnet-5 via Desktop Commander, approved by repo owner"}

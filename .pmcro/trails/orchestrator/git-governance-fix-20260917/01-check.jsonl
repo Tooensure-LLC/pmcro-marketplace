@@ -1,0 +1,3 @@
+{"phase":"check","rule":"rule_zero_governance_evidence_tracked","verdict":"pass","evidence":"git status confirms .pmcro/trails/, policies/, .vscode/ are now tracked and pushed to origin/main."}
+{"phase":"check","rule":"commit_separation","verdict":"pass","evidence":"Governance fix and feature work landed as two distinct commits, not bundled."}
+{"phase":"check","rule":"working_tree_clean","verdict":"pass","evidence":"git status --short returned empty after push."}
