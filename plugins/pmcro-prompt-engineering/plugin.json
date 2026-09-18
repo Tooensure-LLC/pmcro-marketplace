@@ -1,0 +1,6 @@
+{
+  "name": "pmcro-prompt-engineering",
+  "version": "0.1.0",
+  "description": "Prompt engineering plugin marketplace entry point for PMCR-O. Holds the actual prompt-crafting techniques (clarity, examples, chain-of-thought, XML structure, role framing, prefilling, chaining) that other skill-authoring tools (create-skill, scaffold-skill) draw on when filling in a new skill's body. Meant to be reused, not duplicated, by future plugins.",
+  "skills": ["prompt-engineer"]
+}

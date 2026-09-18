@@ -31,6 +31,16 @@
       "name": "pmcro-dotnet",
       "source": "./plugins/pmcro-dotnet",
       "description": "PMCR-O extensions for current .NET and .NET MAUI engineering skills."
+    },
+    {
+      "name": "pmcro-governance",
+      "source": "./plugins/pmcro-governance",
+      "description": "AGT (Microsoft Agent Governance Toolkit) integration for PMCR-O: policy mapping, .NET retrofit, and the pmcro-govern cycle runner."
+    },
+    {
+      "name": "pmcro-prompt-engineering",
+      "source": "./plugins/pmcro-prompt-engineering",
+      "description": "Reusable prompt-engineering techniques for authoring PMCR-O skills."
     }
   ]
 }

@@ -1,0 +1,6 @@
+{
+  "name": "pmcro-governance",
+  "version": "0.1.0",
+  "description": "AGT (Microsoft Agent Governance Toolkit) integration for PMCR-O \u2014 teaches the toolkit, maps PMCR-O laws to AGT policy rules, and retrofits GovernanceKernel into the existing plugins/pmcro agents without a rewrite.",
+  "skills": ["agt-fundamentals", "agt-policy-mapping", "agt-dotnet-retrofit", "pmcro-govern"]
+}
