@@ -69,7 +69,12 @@ var reflectorGrpc = builder.AddProject<Projects.ProjectName_ReflectorGrpc>("proj
 // is referenced here — a live run without these references produced a captured
 // "No such host is known. (projectname-orchestratorgrpc:80)" RpcException even
 // though orchestratorgrpc itself was up and Running.
-builder.AddProject<Projects.ProjectName_OrchestratorApi>("projectname-orchestratorapi")
+// Captured (not fire-and-forget like the OrchestratorApi registration used to
+// be) because the MAUI app below needs this resource for WithReference - the
+// same "projectname-orchestratorapi" name a MAUI HttpClient's
+// "https+http://projectname-orchestratorapi" BaseAddress resolves via service
+// discovery, once ProjectName.App itself calls AddServiceDefaults().
+var orchestratorApi = builder.AddProject<Projects.ProjectName_OrchestratorApi>("projectname-orchestratorapi")
     .WithReference(ollama)
     .WithReference(plannerGrpc)
     .WithReference(makerGrpc)
@@ -108,5 +113,41 @@ builder.AddProject<Projects.ProjectName_Agents_Checker>("pmcro-checker")
 builder.AddProject<Projects.ProjectName_Agents_Reflector>("pmcro-reflector")
     .WithReference(ollama)
     .WaitFor(ollama);
+
+// ── ProjectName.App (MAUI marketplace client) ─────────────────────────────
+// Added via Aspire.Hosting.Maui, not AddProject<T> - ProjectName.App
+// multi-targets net11.0-android/-windows10.0.19041.0, incompatible TFMs for
+// an AddProject<T> reference against this net11.0 AppHost, and the docs
+// explicitly say not to add a ProjectReference for the same reason. The path
+// below is resolved by AddMauiProject itself (MSBuild invoked out-of-process
+// per platform head), so it is intentionally a string, not Projects.ProjectName_App.
+//
+// Only Windows and Android are wired up: ProjectName.App.csproj's
+// TargetFrameworks list is net11.0-android plus a Windows-conditional
+// net11.0-windows10.0.19041.0 and nothing for ios/maccatalyst, so
+// AddiOSSimulator()/AddMacCatalystDevice() would reference platform heads
+// that don't exist in the project and fail at build time, not startup.
+var mauiApp = builder.AddMauiProject("projectname-app", "../../ProjectName.App/ProjectName.App.csproj");
+
+// Windows runs directly on the host machine and can reach localhost, so no
+// dev tunnel is needed for the OrchestratorApi reference here.
+mauiApp.AddWindowsDevice()
+    .WithReference(orchestratorApi)
+    .WaitFor(orchestratorApi);
+
+// Android emulator cannot reach the host's localhost, so both the API traffic
+// and the OTLP telemetry need a dev tunnel. WithOtlpDevTunnel() creates and
+// wires its own tunnel for telemetry; androidApiTunnel is the separate one
+// WithReference(orchestratorApi, androidApiTunnel) below routes HTTP through,
+// per the two-tunnel pattern in the Aspire MAUI docs (one resource, two
+// tunnels: OTLP and API are configured independently).
+var androidApiTunnel = builder.AddDevTunnel("projectname-app-devtunnel")
+    .WithAnonymousAccess()
+    .WithReference(orchestratorApi.GetEndpoint("https"));
+
+mauiApp.AddAndroidEmulator()
+    .WithOtlpDevTunnel()
+    .WithReference(orchestratorApi, androidApiTunnel)
+    .WaitFor(orchestratorApi);
 
 builder.Build().Run();

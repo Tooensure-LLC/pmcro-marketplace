@@ -1,56 +1,43 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Tooensure LLC",
-  "classifications": [ "PMCR-O", "MAUI", "Agent" ],
-  "_comment": [
-    "identity/name/shortName deliberately carry the sourceName token. Because",
-    ".template.config is copied into the output, these get substituted too, so a",
-    "generated app installs as its OWN template instead of colliding with this one.",
-    "That is what makes the recursion work past depth 1."
-  ],
-  "identity": "Tooensure.ProjectName.App",
-  "name": "ProjectName PMCR-O application",
-  "shortName": "ProjectName-app",
-  "description": "A PMCR-O surface: DSO-shaped screens, trail following, and a generated object catalog. The generated app keeps its own .template.config, so it is itself a template.",
-  "tags": {
-    "language": "C#",
-    "type": "project"
-  },
-  "sourceName": "ProjectName",
+  "classifications": ["MAUI", "Mobile", "Marketplace", "PMCRO", "Aspire"],
+  "identity": "Tooensure.PMCRO.MauiMarketplace",
+  "name": "PMCRO Governed .NET MAUI Marketplace App",
+  "shortName": "pmcro-maui",
+  "description": "Governed .NET MAUI marketplace application template for PMCRO autonomous app generation.",
+  "sourceName": "ProjectName.App",
   "preferNameDirectory": true,
-
   "symbols": {
-    "OrchestratorUrl": {
+    "appName": {
       "type": "parameter",
-      "datatype": "string",
-      "defaultValue": "http://localhost:5100/",
-      "replaces": "ORCHESTRATOR_URL",
-      "description": "Default PMCR-O orchestrator endpoint used on first run."
+      "datatype": "text",
+      "description": "Application and root namespace name.",
+      "defaultValue": "MarketplaceApp",
+      "replaces": "ProjectName.App",
+      "fileRename": "ProjectName.App"
     },
-    "Recursive": {
+    "theme": {
       "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "true",
-      "description": "Keep .template.config in the output so the generated app is itself a template."
-    }
-  },
-
-  "sources": [
-    {
-      "modifiers": [
-        {
-          "condition": "(!Recursive)",
-          "exclude": [ ".template.config/**" ]
-        }
+      "datatype": "choice",
+      "description": "Application theme profile.",
+      "choices": [
+        { "choice": "default", "description": "PMCRO default theme" },
+        { "choice": "light", "description": "Light theme" },
+        { "choice": "dark", "description": "Dark theme" }
       ],
-      "exclude": [
-        "**/[Bb]in/**",
-        "**/[Oo]bj/**",
-        "**/.vs/**",
-        "**/*.user",
-        "**/*.filelist",
-        "**/*.lock.json"
-      ]
+      "defaultValue": "default"
+    },
+    "featureSet": {
+      "type": "parameter",
+      "datatype": "choice",
+      "description": "Marketplace feature profile.",
+      "choices": [
+        { "choice": "core", "description": "Core marketplace" },
+        { "choice": "commerce", "description": "Marketplace with commerce capabilities" },
+        { "choice": "full", "description": "Full marketplace capability profile" }
+      ],
+      "defaultValue": "core"
     }
-  ]
+  }
 }

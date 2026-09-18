@@ -4,192 +4,84 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:f="clr-namespace:ProjectName.App.Resources.Fonts"
+    xmlns:controls="clr-namespace:ProjectName.App.Pages.Controls"
     xmlns:models="clr-namespace:ProjectName.App.Models"
     xmlns:pageModels="clr-namespace:ProjectName.App.PageModels"
     x:DataType="pageModels:MarketplacePageModel"
     Style="{StaticResource PmcroPage}"
     Title="Home">
-
     <Grid RowDefinitions="Auto,*">
-
-        <!-- ===== CHROME ===== -->
         <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto" Padding="20,16,20,4" ColumnSpacing="12">
             <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
                 <Label Text="pmcro" Style="{StaticResource PmcroTitle}" VerticalOptions="Center" />
                 <Border Style="{StaticResource PmcroTag}">
-                    <Label Text="APP" Style="{StaticResource PmcroMono}"
-                           FontSize="{StaticResource PmcroFontMicro}" CharacterSpacing="1" />
+                    <Label Text="APP" Style="{StaticResource PmcroMono}" FontSize="{StaticResource PmcroFontMicro}" CharacterSpacing="1" />
                 </Border>
             </HorizontalStackLayout>
-
-            <Border Grid.Column="1" Style="{StaticResource PmcroChip}" Padding="0"
-                    WidthRequest="44" HeightRequest="44" VerticalOptions="Center">
-                <Label Text="{x:Static f:FluentUI.alert_24_regular}"
-                       FontFamily="{x:Static f:FluentUI.FontFamily}"
-                       TextColor="{StaticResource PmcroTextPrimary}" FontSize="20"
-                       HorizontalOptions="Center" VerticalOptions="Center" />
+            <Border Grid.Column="1" Style="{StaticResource PmcroChip}" Padding="0" WidthRequest="44" HeightRequest="44" VerticalOptions="Center">
+                <Label Text="{x:Static f:FluentUI.alert_24_regular}" FontFamily="{x:Static f:FluentUI.FontFamily}" TextColor="{StaticResource PmcroTextPrimary}" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" />
             </Border>
-
             <Border Grid.Column="2" Style="{StaticResource PmcroAvatar}">
-                <Label Text="S" TextColor="{StaticResource PmcroTextHeading}"
-                       FontAttributes="Bold" FontSize="{StaticResource PmcroFontHeading}"
-                       HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="S" TextColor="{StaticResource PmcroTextHeading}" FontAttributes="Bold" FontSize="{StaticResource PmcroFontHeading}" HorizontalOptions="Center" VerticalOptions="Center" />
             </Border>
         </Grid>
-
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout Padding="0,8,0,32" Spacing="0">
-
-                <!-- ===== MASTHEAD ===== -->
+        <ScrollView Grid.Row="1" HorizontalScrollBarVisibility="Never">
+            <VerticalStackLayout Padding="0,8,0,96" Spacing="0">
                 <VerticalStackLayout Padding="20,8,20,0" Spacing="4">
                     <Label Text="Marketplace" Style="{StaticResource PmcroDisplay}" />
-                    <Label Text="Plugins, skills &amp; themes for your PMCR-O loop"
-                           Style="{StaticResource PmcroBody}" />
+                    <Label Text="Plugins, skills &amp; themes for your PMCR-O loop" Style="{StaticResource PmcroBody}" />
                 </VerticalStackLayout>
-
-                <!-- ===== SEARCH ===== -->
                 <Border Style="{StaticResource PmcroField}" Margin="20,18,20,0">
                     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
-                        <Label Grid.Column="0" Text="{x:Static f:FluentUI.search_24_regular}"
-                               FontFamily="{x:Static f:FluentUI.FontFamily}"
-                               TextColor="{StaticResource PmcroTextMuted}" FontSize="18"
-                               VerticalOptions="Center" />
-                        <Entry Grid.Column="1" Style="{StaticResource PmcroEntry}"
-                               Placeholder="Search plugins, skills..."
-                               Text="{Binding SearchText}" />
+                        <Label Grid.Column="0" Text="{x:Static f:FluentUI.search_24_regular}" FontFamily="{x:Static f:FluentUI.FontFamily}" TextColor="{StaticResource PmcroTextMuted}" FontSize="18" VerticalOptions="Center" />
+                        <Entry Grid.Column="1" Style="{StaticResource PmcroEntry}" Placeholder="Search plugins, skills..." Text="{Binding SearchText}" />
                     </Grid>
                 </Border>
-
-                <!-- ===== CATEGORY FILTER ===== -->
-                <CollectionView ItemsSource="{Binding Categories}" SelectionMode="None"
-                                Margin="0,18,0,0" HeightRequest="60">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="10" />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.Header>
-                        <BoxView WidthRequest="20" Color="Transparent" />
-                    </CollectionView.Header>
-                    <CollectionView.Footer>
-                        <BoxView WidthRequest="20" Color="Transparent" />
-                    </CollectionView.Footer>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="x:String">
-                            <Border Style="{StaticResource PmcroChip}" VerticalOptions="Center">
-                                <Label Text="{Binding .}" Style="{StaticResource PmcroChipLabel}" />
-                            </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-
-                <!-- ===== TRAIL BANNER ===== -->
-                <Border Style="{StaticResource PmcroCard}" Margin="20,10,20,0"
-                        IsVisible="{Binding HasTrailBanner}">
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OpenTrailCommand}" />
-                    </Border.GestureRecognizers>
+                <ScrollView Margin="0,18,0,0" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+                    <HorizontalStackLayout Padding="20,0" Spacing="10" BindableLayout.ItemsSource="{Binding Categories}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="x:String">
+                                <controls:MarketplaceCategoryChip Category="{Binding .}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectCategoryCommand}" />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+                </ScrollView>
+                <Border Style="{StaticResource PmcroCard}" Margin="20,10,20,0" IsVisible="{Binding HasTrailBanner}">
+                    <Border.GestureRecognizers><TapGestureRecognizer Command="{Binding OpenTrailCommand}" /></Border.GestureRecognizers>
                     <VerticalStackLayout Spacing="8">
                         <Grid ColumnDefinitions="*,Auto">
-                            <HorizontalStackLayout Grid.Column="0" Spacing="8">
-                                <Border Style="{StaticResource PmcroStatusDot}" />
-                                <Label Text="{Binding TrailBannerStatus}"
-                                       Style="{StaticResource PmcroStatusLabel}" />
-                            </HorizontalStackLayout>
-                            <Label Grid.Column="1" Text="{Binding TrailBannerLoop}"
-                                   Style="{StaticResource PmcroCaption}" VerticalOptions="Center" />
+                            <HorizontalStackLayout Grid.Column="0" Spacing="8"><Border Style="{StaticResource PmcroStatusDot}" /><Label Text="{Binding TrailBannerStatus}" Style="{StaticResource PmcroStatusLabel}" /></HorizontalStackLayout>
+                            <Label Grid.Column="1" Text="{Binding TrailBannerLoop}" Style="{StaticResource PmcroCaption}" VerticalOptions="Center" />
                         </Grid>
                         <Label Text="{Binding TrailBannerTitle}" Style="{StaticResource PmcroSectionHeading}" />
                         <Label Text="{Binding TrailBannerDetail}" Style="{StaticResource PmcroBody}" />
                     </VerticalStackLayout>
                 </Border>
-
-                <!-- ===== FEATURED ===== -->
-                <Label Text="Featured" Style="{StaticResource PmcroSectionHeading}"
-                       Margin="20,28,20,12" />
-
-                <CollectionView ItemsSource="{Binding Featured}" SelectionMode="None" HeightRequest="230">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="14" />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.Header>
-                        <BoxView WidthRequest="20" Color="Transparent" />
-                    </CollectionView.Header>
-                    <CollectionView.Footer>
-                        <BoxView WidthRequest="20" Color="Transparent" />
-                    </CollectionView.Footer>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:MarketplaceItem">
-                            <Border Style="{StaticResource PmcroCard}" WidthRequest="220">
-                                <Grid RowDefinitions="Auto,Auto,*,Auto" RowSpacing="10">
-                                    <Border Grid.Row="0" Style="{StaticResource PmcroIconTile}"
-                                            BackgroundColor="{Binding AccentColor}" Opacity="0.22"
-                                            HorizontalOptions="Start" />
-                                    <Label Grid.Row="0" Text="{Binding Glyph}"
-                                           TextColor="{Binding AccentColor}" FontAttributes="Bold"
-                                           FontSize="20" WidthRequest="44" HeightRequest="44"
-                                           HorizontalOptions="Start"
-                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-
-                                    <Label Grid.Row="1" Text="{Binding Name}"
-                                           Style="{StaticResource PmcroSectionHeading}" />
-                                    <Label Grid.Row="2" Text="{Binding Summary}"
-                                           Style="{StaticResource PmcroBody}" />
-                                    <Button Grid.Row="3" Text="{Binding ActionText}"
-                                            Style="{StaticResource PmcroButtonCompact}" />
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-
-                <!-- ===== INSTALLED ===== -->
-                <Label Text="Installed" Style="{StaticResource PmcroSectionHeading}"
-                       Margin="20,28,20,12" />
-
-                <VerticalStackLayout Padding="20,0" Spacing="10"
-                                     BindableLayout.ItemsSource="{Binding Installed}">
+                <Label Text="Featured" Style="{StaticResource PmcroSectionHeading}" Margin="20,28,20,12" />
+                <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+                    <HorizontalStackLayout Padding="20,0" Spacing="14" BindableLayout.ItemsSource="{Binding Featured}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="models:MarketplaceItem">
+                                <controls:MarketplaceItemCard BindingContext="{Binding .}" />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </HorizontalStackLayout>
+                </ScrollView>
+                <Label Text="Installed" Style="{StaticResource PmcroSectionHeading}" Margin="20,28,20,12" />
+                <VerticalStackLayout Padding="20,0" Spacing="10" BindableLayout.ItemsSource="{Binding Installed}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate x:DataType="models:MarketplaceItem">
-                            <Border Style="{StaticResource PmcroCard}" Padding="12">
-                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
-                                    <Border Grid.Column="0" Style="{StaticResource PmcroIconTile}"
-                                            BackgroundColor="{Binding AccentColor}" Opacity="0.22" />
-                                    <Label Grid.Column="0" Text="{Binding Glyph}"
-                                           TextColor="{Binding AccentColor}" FontAttributes="Bold"
-                                           FontSize="18" WidthRequest="44" HeightRequest="44"
-                                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-
-                                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
-                                        <Label Text="{Binding Name}" Style="{StaticResource PmcroBodyStrong}" />
-                                        <Label Text="{Binding VersionLabel}" Style="{StaticResource PmcroCaption}" />
-                                    </VerticalStackLayout>
-
-                                    <Border Grid.Column="2" Style="{StaticResource PmcroChip}"
-                                            Padding="12,6" VerticalOptions="Center"
-                                            BackgroundColor="{StaticResource PmcroSurfaceMuted}">
-                                        <Label Text="{Binding ActionText}"
-                                               Style="{StaticResource PmcroStatusLabel}" />
-                                    </Border>
-                                </Grid>
-                            </Border>
+                            <controls:InstalledMarketplaceItem BindingContext="{Binding .}" />
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>
-
-        <!-- ===== FAB: start a new template -> Create ===== -->
-        <Border Grid.Row="1" WidthRequest="60" HeightRequest="60"
-                StrokeThickness="0" StrokeShape="RoundRectangle 16"
-                BackgroundColor="{StaticResource PmcroPrimary}"
-                HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,20">
-            <Border.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding OpenCreateCommand}" />
-            </Border.GestureRecognizers>
-            <Label Text="{x:Static f:FluentUI.add_24_regular}"
-                   FontFamily="{x:Static f:FluentUI.FontFamily}"
-                   TextColor="{StaticResource PmcroOnPrimary}" FontSize="26"
-                   HorizontalOptions="Center" VerticalOptions="Center"
-                   SemanticProperties.Description="Create a new skill, plugin, agent or product" />
+        <Border Grid.Row="1" WidthRequest="60" HeightRequest="60" StrokeThickness="0" StrokeShape="RoundRectangle 16"
+                BackgroundColor="{StaticResource PmcroPrimary}" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,20">
+            <Border.GestureRecognizers><TapGestureRecognizer Command="{Binding OpenCreateCommand}" /></Border.GestureRecognizers>
+            <Label Text="{x:Static f:FluentUI.add_24_regular}" FontFamily="{x:Static f:FluentUI.FontFamily}" TextColor="{StaticResource PmcroOnPrimary}" FontSize="26" HorizontalOptions="Center" VerticalOptions="Center" SemanticProperties.Description="Create a new skill, plugin, agent or product" />
         </Border>
     </Grid>
 </ContentPage>

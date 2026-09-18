@@ -26,6 +26,20 @@
          the 260703.1 date-stamp). Copied verbatim rather than re-verifying,
          since B: is the working reference project. -->
     <PackageVersion Include="Aspire.Hosting.JavaScript" Version="13.5.4" />
+    <!-- ── MAUI orchestration (added 2026-09-17) ──────────────────────────
+         Aspire.Hosting.Maui has not published a 13.5.4-line build as of this
+         pin (verified against nuget.org/packages/Aspire.Hosting.Maui,
+         2026-09-17: newest listed is 13.5.3-preview.1.26425.3, the same
+         13.5.3 family Aspire.Hosting.Keycloak was on before its own 13.5.4
+         bump). Pinning to that newest published preview rather than
+         guessing a 13.5.4 tag that would 404 on restore (NU1101). Revert
+         this note once a 13.5.4-line Aspire.Hosting.Maui ships and the pin
+         is bumped to match. Aspire.Hosting.DevTunnels is a hard dependency
+         of AddMauiProject's WithOtlpDevTunnel()/AddDevTunnel() surface used
+         for the Android emulator head; pinned to the same preview family so
+         both restore from the same build. -->
+    <PackageVersion Include="Aspire.Hosting.Maui" Version="13.5.3-preview.1.26425.3" />
+    <PackageVersion Include="Aspire.Hosting.DevTunnels" Version="13.5.4" />
     <!-- Bumped to the 1.14.0 date-stamp (2026-07-21) family, 2026-07-22.
          VERIFIED against nuget.org/v3-flatcontainer per-package version lists
          (not just "dotnet list package outdated", which silently omits
@@ -114,6 +128,10 @@
          AzureAgentProvider; a local provider bridging to ISubjectAgentRegistry
          is the intended path, not Foundry cloud. -->
     <PackageVersion Include="Microsoft.Agents.AI.Workflows.Declarative" Version="1.21.0" />
+    <!-- AGT runtime governance for the MCP boundary and MAF agents. Public Preview. -->
+    <PackageVersion Include="Microsoft.AgentGovernance" Version="5.0.0" />
+    <PackageVersion Include="Microsoft.AgentGovernance.Extensions.ModelContextProtocol" Version="5.0.0" />
+    <PackageVersion Include="Microsoft.AgentGovernance.Extensions.Microsoft.Agents" Version="5.0.0" />
     <!-- ── Testing (added 2026-07-20 bootstrap pass) ─────────────────────── -->
     <PackageVersion Include="xunit.v3.mtp-v2" Version="3.2.2" />
     <!-- ── Containerization ───────────────────────────────────────────────── -->

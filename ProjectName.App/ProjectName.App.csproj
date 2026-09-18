@@ -65,6 +65,14 @@
     <PackageReference Include="Microsoft.Maui.Controls" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
   </ItemGroup>
+
+  <ItemGroup>
+    <!-- Service discovery + OTLP tracing wiring for the Aspire AppHost.
+         ProjectName.ServiceDefaults (the ASP.NET Core one used by the gRPC/API
+         hosts) is not usable here: it carries a FrameworkReference to
+         Microsoft.AspNetCore.App, which a MAUI app cannot resolve. -->
+    <ProjectReference Include="..\src\ProjectName.MauiServiceDefaults\ProjectName.MauiServiceDefaults.csproj" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite.Core" />
     <PackageReference Include="CommunityToolkit.Mvvm" />

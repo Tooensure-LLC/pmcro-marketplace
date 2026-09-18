@@ -1,0 +1,23 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "description": "Governed PMCRO MCP server exposing MAF-backed Planner, Maker, Checker, Reflector, and Orchestrator tools.",
+  "name": "io.github.tooensure-llc/pmcro-marketplace",
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "nuget",
+      "identifier": "Pmcro.McpServer",
+      "version": "0.1.0",
+      "transport": { "type": "stdio" },
+      "packageArguments": [],
+      "environmentVariables": [
+        { "name": "OLLAMA_ENDPOINT", "value": "http://localhost:11434" },
+        { "name": "OLLAMA_MODEL_NAME", "value": "qwen3:8b" }
+      ]
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/Tooensure-LLC/pmcro-marketplace",
+    "source": "github"
+  }
+}

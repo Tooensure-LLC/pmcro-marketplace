@@ -12,9 +12,24 @@
 	<ItemGroup>
 	  <PackageReference Include="Aspire.Hosting.PostgreSQL" />
 	  <PackageReference Include="CommunityToolkit.Aspire.Hosting.Ollama" />
+	  <!-- MAUI orchestration: AddMauiProject + AddWindowsDevice/AddAndroidEmulator.
+	       Aspire.Hosting.DevTunnels is referenced directly (not left transitive)
+	       because AppHost.cs calls builder.AddDevTunnel(...) itself for the
+	       Android emulator's HTTP path to OrchestratorApi, not just the
+	       WithOtlpDevTunnel() convenience method Aspire.Hosting.Maui already
+	       depends on. -->
+	  <PackageReference Include="Aspire.Hosting.Maui" />
+	  <PackageReference Include="Aspire.Hosting.DevTunnels" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <!-- Deliberately NOT a ProjectReference to ProjectName.App: AddMauiProject
+	       takes the .csproj by path instead. A direct ProjectReference here
+	       fails the AppHost build outright - AppHost targets net11.0 while
+	       ProjectName.App multi-targets net11.0-android/-windows10.0.19041.0,
+	       and MSBuild refuses to resolve a project reference across
+	       incompatible TFMs (this is called out explicitly in the Aspire MAUI
+	       integration docs, not just observed here). -->
 	  <ProjectReference Include="..\api\ProjectName.CheckerGrpc\ProjectName.CheckerGrpc.csproj" />
 	  <ProjectReference Include="..\api\ProjectName.MakerGrpc\ProjectName.MakerGrpc.csproj" />
 	  <ProjectReference Include="..\api\ProjectName.ReflectorGrpc\ProjectName.ReflectorGrpc.csproj" />

@@ -1,8 +1,5 @@
 <Solution>
-  <!-- .slnx, not .sln. Your VS cache says v18, which reads slnx natively, and
-       slnx needs no project GUIDs - so this file is hand-maintainable and merges
-       cleanly. `dotnet sln pmcro.slnx add <proj>` works the same. -->
-  <Folder Name="/src/" />
+  <!-- .slnx, not .sln. VS 18 reads slnx natively. -->
   <Folder Name="/src/Agents/">
     <Project Path="src/ProjectName.Agents/Checker/ProjectName.Agents.Checker.csproj" />
     <Project Path="src/ProjectName.Agents/Maker/ProjectName.Agents.Maker.csproj" />
@@ -25,11 +22,15 @@
   <Folder Name="/src/host/">
     <Project Path="src/ProjectName.AppHost/ProjectName.AppHost.csproj" Id="d496c72b-f4df-4ada-8cdb-50cf81ed848d" />
     <Project Path="src/ProjectName.ServiceDefaults/ProjectName.ServiceDefaults.csproj" Id="e2af90c0-4a11-405b-8bd8-fdffbec91a2a" />
+    <Project Path="src/ProjectName.MauiServiceDefaults/ProjectName.MauiServiceDefaults.csproj" />
   </Folder>
   <Folder Name="/src/lib/">
     <Project Path="src/Application/Application.csproj" />
     <Project Path="src/Domain/Domain.csproj" />
     <Project Path="src/Infrastructure/Infrastructure.csproj" />
     <Project Path="src/PMCR.Core/PMCR.Core.csproj" />
+  </Folder>
+  <Folder Name="/src/mcp/">
+    <Project Path="src/pmcro.McpServer/pmcro.McpServer.csproj" />
   </Folder>
 </Solution>

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Toolkit.Hosting;
 using ProjectName.App.Services;
 using ProjectName.App.Resources.Fonts;
+using ProjectName.MauiServiceDefaults;
 
 namespace ProjectName.App;
 
@@ -53,6 +54,13 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 		builder.Services.AddLogging(configure => configure.AddDebug());
 #endif
+
+		// Aspire service discovery + OTLP tracing. When run under the AppHost
+		// (Windows device / Android emulator heads), this picks up
+		// OTEL_EXPORTER_OTLP_ENDPOINT and the service-discovery config Aspire
+		// injects; running the app standalone (outside AppHost) is still fine -
+		// AddOpenTelemetryExporters() no-ops when that env var is unset.
+		builder.AddServiceDefaults();
 
 		builder.Services.AddSingleton<ProjectRepository>();
 		builder.Services.AddSingleton<TaskRepository>();

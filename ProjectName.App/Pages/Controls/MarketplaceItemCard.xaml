@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="ProjectName.App.Pages.Controls.MarketplaceItemCard"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:f="clr-namespace:ProjectName.App.Resources.Fonts"
+    xmlns:models="clr-namespace:ProjectName.App.Models"
+    x:DataType="models:MarketplaceItem">
+    <Border Style="{StaticResource PmcroCard}"
+            WidthRequest="280"
+            MinimumHeightRequest="230"
+            VerticalOptions="Fill">
+        <Grid RowDefinitions="Auto,Auto,*,Auto" RowSpacing="10">
+            <Grid Grid.Row="0" WidthRequest="44" HeightRequest="44" HorizontalOptions="Start">
+                <Border Style="{StaticResource PmcroIconTile}"
+                        BackgroundColor="{Binding AccentColor}"
+                        Opacity="0.22" />
+                <Label Text="{Binding Glyph}"
+                       TextColor="{Binding AccentColor}"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center" />
+            </Grid>
+            <Label Grid.Row="1"
+                   Text="{Binding Name}"
+                   Style="{StaticResource PmcroSectionHeading}"
+                   LineBreakMode="TailTruncation" />
+            <Label Grid.Row="2"
+                   Text="{Binding Summary}"
+                   Style="{StaticResource PmcroBody}"
+                   MaxLines="3"
+                   LineBreakMode="TailTruncation" />
+            <Button Grid.Row="3"
+                    Text="{Binding ActionText}"
+                    Style="{StaticResource PmcroButtonCompact}" />
+        </Grid>
+    </Border>
+</ContentView>

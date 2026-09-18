@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="ProjectName.App.Pages.Controls.InstalledMarketplaceItem"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ProjectName.App.Models"
+    x:DataType="models:MarketplaceItem">
+    <Border Style="{StaticResource PmcroCard}" Padding="12">
+        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+            <Grid Grid.Column="0" WidthRequest="44" HeightRequest="44">
+                <Border Style="{StaticResource PmcroIconTile}"
+                        BackgroundColor="{Binding AccentColor}"
+                        Opacity="0.22" />
+                <Label Text="{Binding Glyph}"
+                       TextColor="{Binding AccentColor}"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center" />
+            </Grid>
+            <VerticalStackLayout Grid.Column="1"
+                                 Spacing="2"
+                                 VerticalOptions="Center">
+                <Label Text="{Binding Name}"
+                       Style="{StaticResource PmcroBodyStrong}"
+                       LineBreakMode="TailTruncation" />
+                <Label Text="{Binding VersionLabel}"
+                       Style="{StaticResource PmcroCaption}" />
+            </VerticalStackLayout>
+            <Border Grid.Column="2"
+                    Style="{StaticResource PmcroChip}"
+                    Padding="12,6"
+                    VerticalOptions="Center"
+                    BackgroundColor="{StaticResource PmcroSurfaceMuted}">
+                <Label Text="{Binding ActionText}"
+                       Style="{StaticResource PmcroStatusLabel}" />
+            </Border>
+        </Grid>
+    </Border>
+</ContentView>
