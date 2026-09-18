@@ -1,0 +1,17 @@
+{
+  "skill": "pmcro-maui-qa",
+  "target": "T:\\pmcro-marketplace",
+  "gate": "mandatory",
+  "status": "RETRY",
+  "verdict": "NOT_ACCEPTED",
+  "blockingGates": ["QG-07", "QG-02", "QG-04", "QG-05", "QG-06"],
+  "qg01": "PASS",
+  "qg03": "PASS_WITH_WARNINGS",
+  "reason": "Template portability is not proven outside the source repository, and runtime/device evidence is unavailable.",
+  "nextActions": [
+    "Make the template self-contained or intentionally package its service-defaults dependency.",
+    "Run MAUI runtime QA on a connected emulator/device.",
+    "Recheck the supplied Marketplace visual defects after the reusable-control changes.",
+    "Re-run QG-01 through QG-07 and seal only after all mandatory gates pass."
+  ]
+}

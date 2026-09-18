@@ -1,0 +1,1 @@
+﻿{"schema":"pmcro.trail.step.v1","cycle_id":"747fa034-0413-46c7-bbf9-fa35c3d9f2e8","step":"01-plan","tool":"pmcro_plan","seed_intent":"Verify the local Ollama integration and build out the next agent capability module.","status":"MCP_SERVER_STARTED","policy":"EC-SYS-003 evaluated: frame exists before tool execution","timestamp":"2026-09-17T12:01:40.2926926Z"}

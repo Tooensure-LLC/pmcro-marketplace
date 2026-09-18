@@ -1,0 +1,47 @@
+apiVersion: governance.toolkit/v1
+version: "1.0"
+name: pmcro-governance
+description: "PMCRO earned constraints at the MCP and MAF execution boundary."
+default_action: deny
+rules:
+  - name: ec-sys-003-log-before-act
+    condition: "tool_name in ['pmcro_plan', 'pmcro_make', 'pmcro_check', 'pmcro_reflect', 'pmcro_orchestrate']"
+    action: log
+    priority: 10
+    description: "EC-SYS-003: record the governed action before execution."
+
+  - name: allow-read-only-phases
+    condition: "tool_name in ['pmcro_plan', 'pmcro_check', 'pmcro_reflect', 'pmcro_orchestrate']"
+    action: allow
+    priority: 100
+    description: "Allow non-mutation PMCRO phase tools after audit evaluation."
+
+  - name: ec-verify-first-001
+    condition: "tool_name == 'pmcro_make' and data.verified != true"
+    action: deny
+    priority: 1000
+    description: "Block Maker execution unless Checker verification is explicitly present."
+
+  - name: allow-verified-maker
+    condition: "tool_name == 'pmcro_make' and data.verified == true"
+    action: allow
+    priority: 100
+    description: "Allow Maker only after explicit verification."
+
+  - name: ec-009-max-loops
+    condition: "tool_name == 'pmcro_orchestrate' and data.loopCount >= 3"
+    action: deny
+    priority: 1000
+    description: "EC-009: MaxLoops=3; halt to human."
+
+  - name: ec-sys-env-001-build-preflight
+    condition: "tool_name == 'pmcro_check' and data.operation == 'build' and data.preflightClean != true"
+    action: deny
+    priority: 1000
+    description: "EC-SYS-ENV-001: build/verification must not start until the local execution environment is proven clean of stale build, runtime, watcher, emulator, and file-locking processes."
+
+  - name: ec-sys-env-001-sanitization
+    condition: "tool_name == 'pmcro_check' and data.operation == 'build' and data.preflightClean == true"
+    action: allow
+    priority: 200
+    description: "EC-SYS-ENV-001: allow build only after pre-flight sanitization evidence is recorded. Cleanup must be scoped to stale project/build processes; never terminate unrelated user workloads."

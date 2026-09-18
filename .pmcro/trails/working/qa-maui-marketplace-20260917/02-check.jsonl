@@ -1,0 +1,7 @@
+{"gate":"QG-01","status":"PASS","evidence":"ProjectName.App.csproj builds net11.0-windows10.0.19041.0/win-x64 with 0 warnings and 0 errors."}
+{"gate":"QG-02","status":"BLOCKED","evidence":"Static inspection completed; runtime viewport verification unavailable because adb is not installed/on PATH. Screenshot-level overflow/overlap verification cannot be claimed."}
+{"gate":"QG-03","status":"PASS_WITH_WARNINGS","evidence":"MarketplaceItemCard, InstalledMarketplaceItem, and MarketplaceCategoryChip are reusable controls. Two marketplace controls use compiled x:DataType; MarketplaceCategoryChip does not."}
+{"gate":"QG-04","status":"BLOCKED","evidence":"Rendered visual comparison was not available in this QA run. Existing supplied screenshot is prior evidence and was not treated as current-state proof."}
+{"gate":"QG-05","status":"BLOCKED","evidence":"Runtime interaction flows could not be exercised without an available device/emulator bridge."}
+{"gate":"QG-06","status":"BLOCKED","evidence":"Accessibility behavior requires runtime/device inspection and was not claimed from XAML alone."}
+{"gate":"QG-07","status":"FAIL","evidence":"Template registration, invalid-theme rejection, and dry-run passed. Clean consumer generation succeeded, but generated QaConsumer build failed because ProjectName.MauiServiceDefaults is referenced outside the template root and is absent from the generated consumer context."}

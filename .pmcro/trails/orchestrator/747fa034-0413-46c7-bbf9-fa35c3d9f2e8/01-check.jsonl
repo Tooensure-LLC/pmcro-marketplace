@@ -1,0 +1,1 @@
+﻿{"schema":"pmcro.trail.step.v1","cycle_id":"747fa034-0413-46c7-bbf9-fa35c3d9f2e8","step":"01-check","tool":"pmcro_check","verdict":"PASS","evidence":"dotnet build pmcro.McpServer exit code 0","constraints":["EC-SYS-003","EC-VERIFY-FIRST-001","EC-009"],"timestamp":"2026-09-17T12:01:41.1025297Z"}

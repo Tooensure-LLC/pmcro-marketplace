@@ -1,0 +1,14 @@
+{
+    "schema":  "pmcro.disposition.v1",
+    "cycle_id":  "f0fe4552-1420-4c30-a5d6-8a958271fbd2",
+    "disposition":  "HALT",
+    "checker_verdict":  "HALT",
+    "sealed":  true,
+    "reason":  "HALT retained: Ollama unreachable and/or .github/workflows absent.",
+    "constraints":  [
+                        "EC-SYS-003",
+                        "EC-VERIFY-FIRST-001",
+                        "EC-009"
+                    ],
+    "timestamp":  "2026-09-17T12:47:15.9557033Z"
+}

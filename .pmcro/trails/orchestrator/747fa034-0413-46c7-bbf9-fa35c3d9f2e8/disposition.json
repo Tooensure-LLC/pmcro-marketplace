@@ -1,0 +1,1 @@
+﻿{"schema":"pmcro.disposition.v1","cycle_id":"747fa034-0413-46c7-bbf9-fa35c3d9f2e8","disposition":"ACCEPT","checker_verdict":"PASS","sealed":true,"reason":"Governed cycle completed with real MCP server startup and local MCP project build evidence.","constraints":["EC-SYS-003","EC-VERIFY-FIRST-001","EC-009"],"timestamp":"2026-09-17T12:01:41.1218895Z"}

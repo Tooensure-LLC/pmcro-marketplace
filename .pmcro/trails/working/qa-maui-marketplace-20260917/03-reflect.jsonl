@@ -1,0 +1,4 @@
+{"phase":"reflect","finding":"The template is reusable only when consumed inside its source repository because ProjectName.App.csproj references ..\\src\\ProjectName.MauiServiceDefaults."}
+{"phase":"reflect","finding":"The supplied Marketplace screenshot identified real visual risks, but this run cannot certify their current state without runtime evidence."}
+{"phase":"reflect","finding":"The marketplace controls are now separated into reusable XAML components, but MarketplaceCategoryChip should gain compiled binding metadata and explicit visual states in a later remediation pass."}
+{"phase":"decision","value":"RETRY","reason":"QG-07 is a release-blocking portability defect; QG-02/QG-04/QG-05/QG-06 also require a device/emulator-capable QA environment before acceptance."}

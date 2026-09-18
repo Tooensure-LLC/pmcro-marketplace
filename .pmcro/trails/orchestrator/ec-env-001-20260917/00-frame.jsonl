@@ -1,0 +1,1 @@
+{"schema":"pmcro.trail.frame.v1","cycle_id":"ec-env-001-20260917","role":"orchestrator","phase":"initialize","disposition":"OPEN","constraint":"EC-SYS-003","timestamp":"2026-09-17T12:00:00Z","seed_intent":"Formalize EC-SYS-ENV-001 pre-flight environment sanitization for governed local builds and verification."}

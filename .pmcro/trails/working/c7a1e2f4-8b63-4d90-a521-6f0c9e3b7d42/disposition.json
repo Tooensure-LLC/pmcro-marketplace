@@ -1,0 +1,23 @@
+{
+  "trail": ".pmcro/trails/working/c7a1e2f4-8b63-4d90-a521-6f0c9e3b7d42",
+  "disposition": "ACCEPT",
+  "verdict": "PASS",
+  "loops": 1,
+  "max_loops": 3,
+  "sealed_by": "orchestrator",
+  "acceptance": {
+    "AC1": "PASS",
+    "AC2": "PASS",
+    "AC3": "PASS",
+    "AC4": "PASS",
+    "AC5": "PASS",
+    "AC6": "PASS",
+    "AC7": "PASS_WITH_CAUTION",
+    "AC8": "PASS"
+  },
+  "artifacts": ["ProjectName.App/.template.config/template.json"],
+  "portable": true,
+  "build": "net11.0-windows10.0.19041.0/win-x64 succeeded; 73 existing MVVMTK0045 warnings, 0 errors",
+  "registration": "pmcro-maui registered locally",
+  "sealed_at": "2026-09-17T08:43:30-05:00"
+}
