@@ -1,6 +1,8 @@
 {
   "name": "pmcro-marketplace",
-  "owner": "Tooensure-LLC",
+  "owner": {
+    "name": "Tooensure-LLC"
+  },
   "description": "PMCR-O colony marketplace \u2014 Prod MAF + Aspire + Ollama + Generic UoW",
   "plugins": [
     {
